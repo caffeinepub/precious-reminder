@@ -1,0 +1,103 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Rebuild envelope + letter UI to match provided HTML design",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Replace SealButton/LetterContainer reveal flow with animated burgundy envelope component featuring triangular flap, wax seal with gold heart, and letter rising animation",
+      "acceptanceCriteria": [
+        "A burgundy envelope (300×200px) with a darker triangular top flap and two-tone lower panels is visible on page load.",
+        "A circular crimson wax seal with a gold heart is centered on the envelope.",
+        "Clicking the envelope flips the top flap upward (rotateX 180deg) and fades out the wax seal.",
+        "The letter panel animates upward out of the envelope, reaching 350×450px at opacity 1.",
+        "Clicking again (or a close action) reverses the animation back to the closed state."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Envelope.tsx",
+          "operation": "create",
+          "description": "Create new Envelope component with burgundy (#800020) envelope container (300×200px), triangular flap using ::before pseudo-element (border-top 110px solid #a31535), two-tone side/bottom panels using ::after, and circular crimson wax seal centered on envelope body with gold heart (♥) content. Implement click handler to toggle 'open' state, applying rotateX(180deg) transform to flap, fading out wax seal, and triggering letter rise animation."
+        },
+        {
+          "path": "frontend/src/components/Letter.tsx",
+          "operation": "create",
+          "description": "Create new Letter component that accepts letter content as children and applies the letter panel styling from REQ-2. Component starts hidden/minimized and animates to 350×450px at opacity 1 when parent Envelope toggles to open state, using transform translateX(-50%) translateY(-50px) and bottom: 100px positioning."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Replace the existing SealButton and LetterContainer/LetterContent reveal flow with the new Envelope component wrapping Letter component. Remove the showLetter state toggle logic and instead pass LetterContent as children to the Letter component inside Envelope. Preserve StarBackground rendering and update background to dark radial gradient as specified in REQ-3."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Add CSS custom properties for --primary-red (#800020), --gold (#d4af37), and --parchment (#fdf5e6). Add keyframe animations for envelope flap rotation (rotateX 180deg), wax seal fade-out, and letter rise transform. Include all necessary envelope, wax-seal, and letter panel styles with pseudo-elements for flap and side panels."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Style revealed letter panel with parchment background, scrollable overflow, Playfair Display serif body text, Dancing Script burgundy header with gold border",
+      "acceptanceCriteria": [
+        "Letter panel has parchment (#fdf5e6) background and 1px solid #e0d0b0 border.",
+        "Letter header is rendered in Dancing Script 28px burgundy with a gold underline.",
+        "Body text uses Playfair Display 16px, dark color #333, justified alignment.",
+        "Letter panel is scrollable when content overflows."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Letter.tsx",
+          "operation": "modify",
+          "description": "Apply parchment background (#fdf5e6), 1px solid #e0d0b0 border, 30px padding, and overflow-y: auto for scrolling to the letter panel container. Set font-family to 'Playfair Display', serif, font-size 16px, line-height 1.6, color #333, and text-align justify for letter body content."
+        },
+        {
+          "path": "frontend/src/components/LetterContent.tsx",
+          "operation": "modify",
+          "description": "Update letter header to use Dancing Script 28px in burgundy (#800020) with a gold (#d4af37) 1px bottom border. Update body paragraphs to use Playfair Display 16px, color #333, text-align justify, and 20px bottom margin. Remove existing Great Vibes and Cinzel font references and replace with the new design fonts."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Add .letter-header and .letter-body CSS classes matching the provided design specifications. Include font-family: 'Dancing Script', cursive for header and 'Playfair Display', serif for body, with appropriate font-size, color, border, margin, and text-align properties."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Update page background to dark radial gradient from #1a1a1a center to #000 edges, preserving StarBackground animated particle layer",
+      "acceptanceCriteria": [
+        "Page background is a dark radial gradient from #1a1a1a center to #000 edges.",
+        "StarBackground sparkle/heart particles remain visible above the background.",
+        "No muted dusty rose or burgundy background tones remain."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Replace the current background gradient styles with radial-gradient(circle, #1a1a1a 0%, #000 100%). Remove the muted romantic gradient and vignette overlay divs. Preserve the StarBackground component rendering above the new dark background."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Load Google Fonts for Dancing Script, Playfair Display, and Poppins via index.html head",
+      "acceptanceCriteria": [
+        "Dancing Script, Playfair Display, and Poppins are loaded from Google Fonts in index.html.",
+        "Fonts render correctly in the envelope and letter UI."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Add <link> tag in <head> to load Dancing Script (weight 600), Playfair Display (regular 400, bold 700, italic 400), and Poppins (weight 300) from Google Fonts: https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300&display=swap. Retain existing Cinzel and Great Vibes imports if other parts of the app still use them."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Add 'Dancing Script' and 'Poppins' to the fontFamily theme extension alongside existing Cinzel, Great Vibes, and Playfair Display entries. Ensure all new fonts are available as Tailwind utility classes."
+        }
+      ]
+    }
+  ]
+}
