@@ -2,12 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-replace-the-current-sealbutton-lettercontainer-lettercontent-reveal-flow-with-an-animated-envelope-component-that-matches-the-provided-html-design-a-burgundy-800020-envelope-with-a-triangular-flap-before-pseudo-element-two-tone-side-bottom-panels-after-and-a-circular-wax-seal-centered-on-the-envelope-body-displaying-a-gold-heart-clicking-the-envelope-toggles-an-open-state-that-flips-the-flap-via-rotatex-180deg-hides-the-wax-seal-and-animates-the-letter-rising-out-of-the-envelope",
-      "featureTitle": "Replace the current SealButton/LetterContainer/LetterContent reveal flow with an animated envelope component that matches the provided HTML design: a burgundy (#800020) envelope with a triangular flap (::before pseudo-element), two-tone side/bottom panels (::after), and a circular wax seal centered on the envelope body displaying a gold heart (♥). Clicking the envelope toggles an 'open' state that flips the flap via rotateX(180deg), hides the wax seal, and animates the letter rising out of the envelope.",
+      "featureId": "feature-fix-the-click-to-open-interaction-on-the-envelope-component-so-that-clicking-the-envelope-or-its-wax-seal-click-to-open-prompt-correctly-toggles-the-open-state-causing-the-letter-panel-to-rise-out-of-the-envelope-as-intended",
+      "featureTitle": "Fix the click-to-open interaction on the Envelope component so that clicking the envelope (or its wax seal / 'click to open' prompt) correctly toggles the open state, causing the letter panel to rise out of the envelope as intended.",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/Envelope.tsx",
-        "frontend/src/index.css"
+        "frontend/src/components/Envelope.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -19,65 +17,6 @@
       ],
       "testIds": [
         "REQ-1"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-style-the-revealed-letter-panel-using-the-provided-design-parchment-background-fdf5e6-1px-border-e0d0b0-padding-30px-scrollable-overflow-y-with-letter-content-using-playfair-display-serif-at-16px-line-height-1-6-the-letter-header-uses-dancing-script-28px-in-burgundy-800020-with-a-gold-d4af37-bottom-border-the-letter-body-text-is-dark-333-justified-with-a-20px-bottom-margin",
-      "featureTitle": "Style the revealed letter panel using the provided design: parchment background (#fdf5e6), 1px border (#e0d0b0), padding 30px, scrollable overflow-y, with letter content using Playfair Display serif at 16px line-height 1.6. The letter header uses Dancing Script 28px in burgundy (#800020) with a gold (#d4af37) bottom border. The letter body text is dark (#333), justified, with a 20px bottom margin.",
-      "files": [
-        "frontend/src/components/LetterContent.tsx",
-        "frontend/src/index.css"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "blob-storage@4.0.0"
-      ],
-      "testIds": [
-        "REQ-2"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-update-the-page-background-to-a-dark-radial-gradient-radial-gradient-circle-1a1a1a-0-000-100-to-match-the-provided-design-replacing-the-current-muted-romantic-gradient-retain-the-existing-starbackground-animated-particle-layer-above-the-background",
-      "featureTitle": "Update the page background to a dark radial gradient (radial-gradient(circle, #1a1a1a 0%, #000 100%)) to match the provided design, replacing the current muted romantic gradient. Retain the existing StarBackground animated particle layer above the background.",
-      "files": [
-        "frontend/src/App.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "blob-storage@4.0.0"
-      ],
-      "testIds": [
-        "REQ-3"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-load-google-fonts-for-dancing-script-weight-600-playfair-display-regular-400-bold-700-italic-400-and-poppins-weight-300-via-the-index-html-head-in-addition-to-any-existing-font-imports",
-      "featureTitle": "Load Google Fonts for Dancing Script (weight 600), Playfair Display (regular 400, bold 700, italic 400), and Poppins (weight 300) via the index.html <head>, in addition to any existing font imports.",
-      "files": [
-        "frontend/index.html",
-        "frontend/tailwind.config.js"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "blob-storage@4.0.0"
-      ],
-      "testIds": [
-        "REQ-4"
       ],
       "confidence": "high"
     }

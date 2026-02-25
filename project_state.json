@@ -1,51 +1,24 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Interactive romantic love letter web page titled 'A Letter for Priya' — features an animated envelope with a wax seal, a hidden letter that reveals on click, sparkle background, and elegant typography using Dancing Script, Playfair Display, and Poppins fonts.",
-  "architectural_notes": [
-    "Single-page HTML/CSS/JS app with no backend — all content is inline",
-    "Envelope open/close toggle handled via CSS class 'open' on .envelope-wrapper",
-    "Letter animates out of envelope using CSS transitions on bottom, height, opacity, and transform"
+  "summary": "New project",
+  "architectural_notes": [],
+  "known_issues": [
+    "'Click to open' interaction is not functioning as expected"
   ],
-  "known_issues": [],
-  "isFixRequest": false,
+  "isFixRequest": true,
   "existing_features": [
     {
-      "id": "feature-replace-the-current-sealbutton-lettercontainer-lettercontent-reveal-flow-with-an-animated-envelope-component-that-matches-the-provided-html-design-a-burgundy-800020-envelope-with-a-triangular-flap-before-pseudo-element-two-tone-side-bottom-panels-after-and-a-circular-wax-seal-centered-on-the-envelope-body-displaying-a-gold-heart-clicking-the-envelope-toggles-an-open-state-that-flips-the-flap-via-rotatex-180deg-hides-the-wax-seal-and-animates-the-letter-rising-out-of-the-envelope",
-      "title": "Replace the current SealButton/LetterContainer/LetterContent reveal flow with an animated envelope component that matches the provided HTML design: a burgundy (#800020) envelope with a triangular flap (::before pseudo-element), two-tone side/bottom panels (::after), and a circular wax seal centered on the envelope body displaying a gold heart (♥). Clicking the envelope toggles an 'open' state that flips the flap via rotateX(180deg), hides the wax seal, and animates the letter rising out of the envelope.",
+      "id": "feature-fix-the-click-to-open-interaction-on-the-envelope-component-so-that-clicking-the-envelope-or-its-wax-seal-click-to-open-prompt-correctly-toggles-the-open-state-causing-the-letter-panel-to-rise-out-of-the-envelope-as-intended",
+      "title": "Fix the click-to-open interaction on the Envelope component so that clicking the envelope (or its wax seal / 'click to open' prompt) correctly toggles the open state, causing the letter panel to rise out of the envelope as intended.",
       "reqIds": [
         "REQ-1"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-style-the-revealed-letter-panel-using-the-provided-design-parchment-background-fdf5e6-1px-border-e0d0b0-padding-30px-scrollable-overflow-y-with-letter-content-using-playfair-display-serif-at-16px-line-height-1-6-the-letter-header-uses-dancing-script-28px-in-burgundy-800020-with-a-gold-d4af37-bottom-border-the-letter-body-text-is-dark-333-justified-with-a-20px-bottom-margin",
-      "title": "Style the revealed letter panel using the provided design: parchment background (#fdf5e6), 1px border (#e0d0b0), padding 30px, scrollable overflow-y, with letter content using Playfair Display serif at 16px line-height 1.6. The letter header uses Dancing Script 28px in burgundy (#800020) with a gold (#d4af37) bottom border. The letter body text is dark (#333), justified, with a 20px bottom margin.",
-      "reqIds": [
-        "REQ-2"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-the-page-background-to-a-dark-radial-gradient-radial-gradient-circle-1a1a1a-0-000-100-to-match-the-provided-design-replacing-the-current-muted-romantic-gradient-retain-the-existing-starbackground-animated-particle-layer-above-the-background",
-      "title": "Update the page background to a dark radial gradient (radial-gradient(circle, #1a1a1a 0%, #000 100%)) to match the provided design, replacing the current muted romantic gradient. Retain the existing StarBackground animated particle layer above the background.",
-      "reqIds": [
-        "REQ-3"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-load-google-fonts-for-dancing-script-weight-600-playfair-display-regular-400-bold-700-italic-400-and-poppins-weight-300-via-the-index-html-head-in-addition-to-any-existing-font-imports",
-      "title": "Load Google Fonts for Dancing Script (weight 600), Playfair Display (regular 400, bold 700, italic 400), and Poppins (weight 300) via the index.html <head>, in addition to any existing font imports.",
-      "reqIds": [
-        "REQ-4"
       ],
       "version": 1
     }
   ],
   "new_feature_requests": [],
-  "gameProjectType": "none",
-  "projectName": "A Letter for Priya",
+  "projectName": "Fix 'Click to Open' envelope interaction",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

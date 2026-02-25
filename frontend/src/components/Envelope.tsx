@@ -16,14 +16,14 @@ export default function Envelope({ children }: EnvelopeProps) {
       className="envelope-wrapper"
       style={{
         position: 'relative',
-        cursor: 'pointer',
+        cursor: isOpen ? 'default' : 'pointer',
         transition: 'transform 0.5s ease',
         zIndex: 10,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
       }}
-      onClick={handleToggle}
+      onClick={!isOpen ? handleToggle : undefined}
     >
       {/* Envelope body */}
       <div
@@ -89,7 +89,7 @@ export default function Envelope({ children }: EnvelopeProps) {
             alignItems: 'center',
             transition: 'opacity 0.3s ease',
             opacity: isOpen ? 0 : 1,
-            pointerEvents: isOpen ? 'none' : 'auto',
+            pointerEvents: 'none',
           }}
         >
           <span style={{ color: '#d4af37', fontSize: '24px', lineHeight: 1 }}>♥</span>
@@ -117,8 +117,10 @@ export default function Envelope({ children }: EnvelopeProps) {
             ? '0 20px 50px rgba(0,0,0,0.8)'
             : '0 0 10px rgba(0,0,0,0.2)',
           opacity: isOpen ? 1 : 0,
-          overflowY: 'auto',
+          overflowY: isOpen ? 'auto' : 'hidden',
           borderRadius: '2px',
+          // Prevent the invisible closed panel from blocking clicks on the envelope
+          pointerEvents: isOpen ? 'auto' : 'none',
         }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -146,7 +148,10 @@ export default function Envelope({ children }: EnvelopeProps) {
       {/* Close hint when open */}
       {isOpen && (
         <button
-          onClick={handleToggle}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleToggle();
+          }}
           style={{
             marginTop: '280px',
             fontFamily: "'Poppins', sans-serif",

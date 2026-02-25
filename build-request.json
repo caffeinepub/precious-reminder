@@ -1,98 +1,35 @@
 {
   "kind": "build_request",
-  "title": "Rebuild envelope + letter UI to match provided HTML design",
-  "projectName": "A Letter for Priya",
-  "priority": "normal",
+  "title": "Fix 'Click to Open' envelope interaction",
+  "priority": "high",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Replace the current SealButton/LetterContainer/LetterContent reveal flow with an animated envelope component that matches the provided HTML design: a burgundy (#800020) envelope with a triangular flap (::before pseudo-element), two-tone side/bottom panels (::after), and a circular wax seal centered on the envelope body displaying a gold heart (♥). Clicking the envelope toggles an 'open' state that flips the flap via rotateX(180deg), hides the wax seal, and animates the letter rising out of the envelope.",
+      "text": "Fix the click-to-open interaction on the Envelope component so that clicking the envelope (or its wax seal / 'click to open' prompt) correctly toggles the open state, causing the letter panel to rise out of the envelope as intended.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-3"
+          "msg-4"
         ],
         "quotes": [
-          ".envelope::before { border-top: 110px solid #a31535; ... transform: rotateX(180deg); }",
-          ".wax-seal::after { content: '♥'; color: var(--gold); font-size: 24px; }",
-          ".envelope-wrapper.open .letter { bottom: 100px; height: 450px; width: 350px; opacity: 1; z-index: 5; transform: translateX(-50%) translateY(-50px); }"
+          "Why isn't the 'click to open' working"
         ]
       },
       "acceptanceCriteria": [
-        "A burgundy envelope (300×200px) with a darker triangular top flap and two-tone lower panels is visible on page load.",
-        "A circular crimson wax seal with a gold heart is centered on the envelope.",
-        "Clicking the envelope flips the top flap upward (rotateX 180deg) and fades out the wax seal.",
-        "The letter panel animates upward out of the envelope, reaching 350×450px at opacity 1.",
-        "Clicking again (or a close action) reverses the animation back to the closed state."
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "text": "Style the revealed letter panel using the provided design: parchment background (#fdf5e6), 1px border (#e0d0b0), padding 30px, scrollable overflow-y, with letter content using Playfair Display serif at 16px line-height 1.6. The letter header uses Dancing Script 28px in burgundy (#800020) with a gold (#d4af37) bottom border. The letter body text is dark (#333), justified, with a 20px bottom margin.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-3"
-        ],
-        "quotes": [
-          ".letter { background: var(--parchment); padding: 30px; border: 1px solid #e0d0b0; overflow-y: auto; }",
-          ".letter-header { font-family: 'Dancing Script', cursive; font-size: 28px; color: var(--primary-red); border-bottom: 1px solid var(--gold); }",
-          ".letter-body { margin-bottom: 20px; text-align: justify; }"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Letter panel has parchment (#fdf5e6) background and 1px solid #e0d0b0 border.",
-        "Letter header is rendered in Dancing Script 28px burgundy with a gold underline.",
-        "Body text uses Playfair Display 16px, dark color #333, justified alignment.",
-        "Letter panel is scrollable when content overflows."
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "text": "Update the page background to a dark radial gradient (radial-gradient(circle, #1a1a1a 0%, #000 100%)) to match the provided design, replacing the current muted romantic gradient. Retain the existing StarBackground animated particle layer above the background.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-3"
-        ],
-        "quotes": [
-          "background: radial-gradient(circle, #1a1a1a 0%, #000 100%);"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Page background is a dark radial gradient from #1a1a1a center to #000 edges.",
-        "StarBackground sparkle/heart particles remain visible above the background.",
-        "No muted dusty rose or burgundy background tones remain."
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "text": "Load Google Fonts for Dancing Script (weight 600), Playfair Display (regular 400, bold 700, italic 400), and Poppins (weight 300) via the index.html <head>, in addition to any existing font imports.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-3"
-        ],
-        "quotes": [
-          "<link href=\"https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300&display=swap\" rel=\"stylesheet\">"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Dancing Script, Playfair Display, and Poppins are loaded from Google Fonts in index.html.",
-        "Fonts render correctly in the envelope and letter UI."
+        "Clicking anywhere on the closed envelope triggers the open animation and the letter panel rises out.",
+        "The open/closed toggle state is correctly tracked in React state.",
+        "No JavaScript console errors occur when clicking the envelope.",
+        "Clicking again (or a close button if present) returns the envelope to its closed state.",
+        "The wax seal and any 'click to open' label are visually interactive (cursor: pointer) and respond to click events."
       ]
     }
   ],
   "constraints": [
-    "Do not modify files under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or frontend/src/components/ui.",
-    "Preserve the existing StarBackground component and its animation logic.",
-    "All CSS variables (--primary-red, --gold, --parchment) must use the values defined in the provided HTML: #800020, #d4af37, #fdf5e6."
+    "Do not alter frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or any files under frontend/src/components/ui."
   ],
   "nonGoals": [
-    "Adding background music or audio controls.",
-    "Adding floating rose petals animation.",
-    "Backend data persistence or API integration.",
-    "Internet Identity authentication flow changes."
+    "Adding new envelope animations or visual effects beyond fixing the existing click interaction.",
+    "Backend changes — this is a purely frontend interaction bug."
   ],
   "imageRequirements": {
     "required": [],
