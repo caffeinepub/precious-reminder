@@ -1,44 +1,40 @@
 {
   "kind": "build_request",
-  "title": "Rebuild love letter page from provided HTML code",
+  "title": "Add 'Welcome Cutee' gate button before website content",
   "projectName": "For My Cutee",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Replace the current frontend app with a faithful React/Tailwind implementation of the provided HTML design. The page must display a dark background (#1a1a1a), four floating emoji elements (❤️, ✨, 🕊️, 🌹) that animate upward with a float keyframe, a centered parchment-style letter container (max-width 650px, background #fdfcf0, gold border #d4af37, box-shadow, fadeIn animation), a Dancing Script header reading 'To my dearest Priya (Cutee) 📜✨' in maroon (#800000) with a gold double bottom border, the full letter body text in EB Garamond with justified alignment and line-height 1.9, inline highlighted spans styled italic/bold/maroon with wavy gold underline for the phrases 'Please don't misunderstand my intentions;' and 'grace note in my life;', a right-aligned cursive footer reading 'Always yours, ❤️', and a centered maroon radial-gradient wax seal circle with gold letter 'P'. Import Dancing Script, Playfair Display, and EB Garamond from Google Fonts. Apply responsive styles reducing padding and font sizes on screens below 480px.",
+      "text": "Add a full-screen welcome gate that appears before any website content is visible. The gate must display a single button labeled 'Welcome Cutee'. Only after the user clicks this button should the main website content (LoveLetterPage) become visible. The gate should fill the entire viewport with a visually matching dark/romantic background consistent with the existing theme, and the button should be styled to match the gold/maroon romantic aesthetic defined in the project.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-last"
+          "msg-4"
         ],
         "quotes": [
-          "Not the draft make a new one with the new code i have provided to you"
+          "add a button that must to be clicked and then only the website will open and she would be able to visit the website and the button must say ' Welcome Cutee'"
         ]
       },
       "acceptanceCriteria": [
-        "Dark #1a1a1a full-viewport background is rendered",
-        "Four floating emoji elements (❤️, ✨, 🕊️, 🌹) animate upward with staggered delays",
-        "Letter container is centered, has a cream parchment background (#fdfcf0), gold border (#d4af37), and fades in on load",
-        "Header reads 'To my dearest Priya (Cutee) 📜✨' in Dancing Script, maroon color, with a gold double-line bottom border",
-        "All five letter paragraphs are rendered in full with correct emoji and line breaks",
-        "The phrases 'Please don't misunderstand my intentions;' and 'grace note in my life;' are styled italic, bold, maroon, with wavy gold underline",
-        "Footer reads 'Always yours, ❤️' right-aligned in Dancing Script",
-        "Wax seal is a 70×70px maroon radial-gradient circle displaying gold letter 'P'",
-        "On screens narrower than 480px, padding reduces and font sizes scale down as specified"
+        "On initial page load, only the gate screen is shown — the LoveLetterPage content is hidden.",
+        "The gate screen covers the full viewport.",
+        "A single button with the label 'Welcome Cutee' is centered on the gate screen.",
+        "Clicking the 'Welcome Cutee' button hides the gate and reveals the main LoveLetterPage content.",
+        "The gate's visual style (background, typography, button colors) is consistent with the existing dark romantic theme (dark background, gold/maroon accents, serif/cursive fonts).",
+        "The transition from gate to main content is smooth (e.g., fade or gentle animation)."
       ]
     }
   ],
   "constraints": [
-    "Do not reuse or modify the existing envelope/letter animation components — build fresh components matching the provided HTML design exactly",
-    "Do not include the envelope open interaction or star background from the previous version",
-    "All letter text content must match the provided HTML verbatim"
+    "Do not modify any files under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or frontend/src/components/ui.",
+    "The gate must be implemented as a frontend-only state change — no backend involvement.",
+    "Existing LoveLetterPage component and its styles must remain unchanged."
   ],
   "nonGoals": [
-    "Retaining any existing envelope animation, SealButton, StarBackground, or Envelope components",
-    "Backend changes",
-    "Internet Identity authentication",
-    "Music or audio features"
+    "No backend persistence of gate state.",
+    "No authentication or login required to pass the gate.",
+    "No changes to the love letter content or styling."
   ],
   "imageRequirements": {
     "required": [],

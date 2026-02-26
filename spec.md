@@ -1,19 +1,12 @@
 # Specification
 
 ## Summary
-**Goal:** Replace the existing frontend with a faithful React/Tailwind implementation of a provided HTML love letter design.
+**Goal:** Add a full-screen welcome gate that users must click through before seeing the main website content.
 
 **Planned changes:**
-- Remove all existing envelope animation, SealButton, StarBackground, and Envelope components
-- Set full-viewport dark background (#1a1a1a)
-- Add four floating emoji elements (❤️, ✨, 🕊️, 🌹) that animate upward with staggered delays using a float keyframe
-- Create a centered parchment-style letter container (max-width 650px, background #fdfcf0, gold border #d4af37, box-shadow, fadeIn animation on load)
-- Import Dancing Script, Playfair Display, and EB Garamond from Google Fonts
-- Render header "To my dearest Priya (Cutee) 📜✨" in Dancing Script, maroon (#800000), with a gold double-line bottom border
-- Render all five letter body paragraphs verbatim in EB Garamond with justified alignment and line-height 1.9
-- Style the phrases "Please don't misunderstand my intentions;" and "grace note in my life;" as italic, bold, maroon, with a wavy gold underline
-- Add a right-aligned cursive footer reading "Always yours, ❤️" in Dancing Script
-- Add a centered 70×70px maroon radial-gradient wax seal circle displaying gold letter "P"
-- Apply responsive styles reducing padding and font sizes on screens narrower than 480px
+- Create a new full-screen gate component that displays on initial page load, covering the entire viewport with a dark romantic background consistent with the existing theme
+- Add a centered "Welcome Cutee" button styled with the gold/maroon romantic aesthetic (serif/cursive fonts, matching colors)
+- Gate hides and reveals the main LoveLetterPage with a smooth fade/transition animation when the button is clicked
+- Wire the gate into the app so LoveLetterPage is hidden until the button is clicked
 
-**User-visible outcome:** Users see a beautifully styled static love letter page with floating emoji animations, a parchment-style letter container, styled highlighted phrases, and a wax seal, matching the provided HTML design exactly.
+**User-visible outcome:** When the site loads, visitors see only the welcome gate with a "Welcome Cutee" button. Clicking it smoothly transitions to the full love letter website.

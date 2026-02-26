@@ -1,7 +1,7 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-26T00:02:41.863Z",
+  "generatedAt": "2026-02-26T00:07:38.564Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
@@ -12,46 +12,29 @@
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Replace the current frontend app with a faithful React/Tailwind implementation of the provided HTML design. The page must display a dark background (#1a1a1a), four floating emoji elements (❤️, ✨, 🕊️, 🌹) that animate upward with a float keyframe, a centered parchment-style letter container (max-width 650px, background #fdfcf0, gold border #d4af37, box-shadow, fadeIn animation), a Dancing Script header reading 'To my dearest Priya (Cutee) 📜✨' in maroon (#800000) with a gold double bottom border, the full letter body text in EB Garamond with justified alignment and line-height 1.9, inline highlighted spans styled italic/bold/maroon with wavy gold underline for the phrases 'Please don't misunderstand my intentions;' and 'grace note in my life;', a right-aligned cursive footer reading 'Always yours, ❤️', and a centered maroon radial-gradient wax seal circle with gold letter 'P'. Import Dancing Script, Playfair Display, and EB Garamond from Google Fonts. Apply responsive styles reducing padding and font sizes on screens below 480px.",
+        "summary": "Add a full-screen welcome gate that appears before any website content is visible. The gate must display a single button labeled 'Welcome Cutee'. Only after the user clicks this button should the main website content (LoveLetterPage) become visible. The gate should fill the entire viewport with a visually matching dark/romantic background consistent with the existing theme, and the button should be styled to match the gold/maroon romantic aesthetic defined in the project.",
         "status": "implemented",
         "plannedFiles": [
+          "frontend/src/components/WelcomeGate.tsx",
           "frontend/src/App.tsx",
-          "frontend/src/components/LoveLetterPage.tsx",
-          "frontend/src/components/LetterContainer.tsx",
-          "frontend/src/components/LetterContent.tsx",
-          "frontend/src/index.css",
-          "frontend/index.html",
-          "frontend/tailwind.config.js"
+          "frontend/src/index.css"
         ],
         "matchedFiles": [
+          "frontend/src/components/WelcomeGate.tsx",
           "frontend/src/App.tsx",
-          "frontend/src/components/LoveLetterPage.tsx",
-          "frontend/src/components/LetterContainer.tsx",
-          "frontend/src/components/LetterContent.tsx",
-          "frontend/src/index.css",
-          "frontend/index.html",
-          "frontend/tailwind.config.js"
+          "frontend/src/index.css"
         ]
       }
     ]
   },
   "changedFiles": [
     "build-request.json",
-    "build-template/README.md",
-    "caffeine.lock.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/index.html",
     "frontend/src/App.tsx",
-    "frontend/src/components/Envelope.tsx",
-    "frontend/src/components/LetterContainer.tsx",
-    "frontend/src/components/LetterContent.tsx",
-    "frontend/src/components/LoveLetterPage.tsx",
-    "frontend/src/components/SealButton.tsx",
-    "frontend/src/components/StarBackground.tsx",
+    "frontend/src/components/WelcomeGate.tsx",
     "frontend/src/index.css",
-    "frontend/tailwind.config.js",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

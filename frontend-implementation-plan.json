@@ -1,57 +1,34 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Rebuild love letter page from provided HTML code",
+  "title": "Add 'Welcome Cutee' gate button before website content",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Replace the current frontend app with a faithful React/Tailwind implementation of the provided HTML design featuring a dark background, floating emoji animations, a parchment-style letter container with gold accents, Dancing Script/EB Garamond typography, highlighted phrases with wavy underlines, and a wax seal",
+      "summary": "Add a full-screen welcome gate with 'Welcome Cutee' button that must be clicked before the main LoveLetterPage content becomes visible, styled to match the existing dark romantic theme",
       "acceptanceCriteria": [
-        "Dark #1a1a1a full-viewport background is rendered",
-        "Four floating emoji elements (❤️, ✨, 🕊️, 🌹) animate upward with staggered delays",
-        "Letter container is centered, has a cream parchment background (#fdfcf0), gold border (#d4af37), and fades in on load",
-        "Header reads 'To my dearest Priya (Cutee) 📜✨' in Dancing Script, maroon color, with a gold double-line bottom border",
-        "All five letter paragraphs are rendered in full with correct emoji and line breaks",
-        "The phrases 'Please don't misunderstand my intentions;' and 'grace note in my life;' are styled italic, bold, maroon, with wavy gold underline",
-        "Footer reads 'Always yours, ❤️' right-aligned in Dancing Script",
-        "Wax seal is a 70×70px maroon radial-gradient circle displaying gold letter 'P'",
-        "On screens narrower than 480px, padding reduces and font sizes scale down as specified"
+        "On initial page load, only the gate screen is shown — the LoveLetterPage content is hidden.",
+        "The gate screen covers the full viewport.",
+        "A single button with the label 'Welcome Cutee' is centered on the gate screen.",
+        "Clicking the 'Welcome Cutee' button hides the gate and reveals the main LoveLetterPage content.",
+        "The gate's visual style (background, typography, button colors) is consistent with the existing dark romantic theme (dark background, gold/maroon accents, serif/cursive fonts).",
+        "The transition from gate to main content is smooth (e.g., fade or gentle animation)."
       ],
       "file_operations": [
         {
+          "path": "frontend/src/components/WelcomeGate.tsx",
+          "operation": "create",
+          "description": "Create a new WelcomeGate component that renders a full-screen overlay with a dark romantic background (#1a1a1a or similar) and a centered 'Welcome Cutee' button. The button should use the gold/maroon color scheme from tailwind.config.js (maroon background, gold hover state) and cursive/serif fonts (Dancing Script or Playfair Display). Include a fade-in animation on mount and a fade-out animation when the button is clicked. The component should accept an onEnter callback prop that fires when the button is clicked."
+        },
+        {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Replace the current envelope-based layout with a simple dark background container (#1a1a1a) that renders the new LoveLetterPage component. Remove all references to Envelope, StarBackground, and footer attribution. Set min-height to 100vh and apply flex centering."
-        },
-        {
-          "path": "frontend/src/components/LoveLetterPage.tsx",
-          "operation": "create",
-          "description": "Create the main page component that renders the four floating emoji elements (❤️, ✨, 🕊️, 🌹) with absolute positioning and upward float animations using staggered animation delays, and the centered LetterContainer component with the parchment design."
-        },
-        {
-          "path": "frontend/src/components/LetterContainer.tsx",
-          "operation": "modify",
-          "description": "Replace the existing wine-gradient decorative letter surface with a parchment-style container: max-width 650px, background #fdfcf0, 8px solid gold border (#d4af37), multiple box-shadows for depth, 12px border-radius, padding 40px, and a fadeIn animation on mount. Remove all previous gradient and ornament styles."
-        },
-        {
-          "path": "frontend/src/components/LetterContent.tsx",
-          "operation": "modify",
-          "description": "Replace the existing letter content with the exact text from the provided HTML design. Render the Dancing Script header 'To my dearest Priya (Cutee) 📜✨' in maroon (#800000) with a gold double bottom border. Render all five paragraphs in EB Garamond with justified text alignment and line-height 1.9. Apply italic, bold, maroon color, and wavy gold text-decoration-line to the phrases 'Please don't misunderstand my intentions;' and 'grace note in my life;'. Add the right-aligned footer 'Always yours, ❤️' in Dancing Script, and center a 70×70px maroon radial-gradient wax seal circle with gold letter 'P'."
+          "description": "Modify App.tsx to introduce a local state (useState) that tracks whether the welcome gate has been passed (e.g., showGate boolean, initially true). Conditionally render the WelcomeGate component when showGate is true. When the user clicks the 'Welcome Cutee' button (via the onEnter callback), set showGate to false and render the LoveLetterPage component. Ensure the transition is smooth by using CSS fade animations or a simple opacity transition."
         },
         {
           "path": "frontend/src/index.css",
           "operation": "modify",
-          "description": "Add keyframe animations for 'float' (upward translation with subtle rotation) and 'fadeIn' (opacity 0 to 1 with slight scale). Define responsive media query for screens below 480px to reduce container padding to 20px and scale down font sizes. Ensure Tailwind base/utilities remain intact."
-        },
-        {
-          "path": "frontend/index.html",
-          "operation": "modify",
-          "description": "Ensure Google Fonts imports include Dancing Script, Playfair Display, and EB Garamond. Remove or retain other fonts as needed, but these three are mandatory for the new design."
-        },
-        {
-          "path": "frontend/tailwind.config.js",
-          "operation": "modify",
-          "description": "Extend the theme to include custom colors for maroon (#800000), dark background (#1a1a1a), parchment (#fdfcf0), and gold (#d4af37). Add float and fadeIn animations to the theme.animation and theme.keyframes sections. Ensure Dancing Script, EB Garamond, and Playfair Display are registered in the fontFamily configuration."
+          "description": "Add CSS classes or keyframe animations to support the welcome gate fade-in and fade-out transitions (e.g., .gate-fade-in, .gate-fade-out). Ensure these animations are consistent with the existing fadeIn animation already defined in this file. Keep all existing styles for LoveLetterPage intact."
         }
       ]
     }
