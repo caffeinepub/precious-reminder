@@ -1,18 +1,19 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Valentine's/love letter app featuring an envelope animation that opens to reveal a letter, with a centered message box.",
+  "summary": "A romantic love letter web page titled 'For My Cutee' addressed to Priya, featuring elegant typography, floating heart animations, a parchment-style letter container with gold borders, and a wax seal.",
   "architectural_notes": [
-    "The message box (envelope/letter container) must remain fixed at the center of the screen at all times and must not move or animate positionally."
+    "Single-page HTML app with embedded CSS, no external JS dependencies",
+    "Uses Google Fonts: Dancing Script, Playfair Display, EB Garamond",
+    "Dark background (#1a1a1a) with cream parchment letter container (#fdfcf0) and gold accents (#d4af37)",
+    "Floating background emoji elements (hearts, sparkles, dove, rose) with CSS keyframe animations"
   ],
-  "known_issues": [
-    "Message box drifts or moves off-center after the envelope opens animation plays."
-  ],
-  "isFixRequest": true,
+  "known_issues": [],
+  "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-the-letter-message-panel-revealed-after-the-envelope-opens-must-remain-fixed-and-perfectly-centered-in-the-viewport-at-all-times-it-must-not-shift-drift-slide-or-animate-its-position-after-the-reveal-the-panel-s-centering-must-be-enforced-with-stable-non-animated-positioning-e-g-fixed-positioning-with-transform-based-centering-so-that-no-keyframe-state-change-or-re-render-can-cause-it-to-move-from-the-center-of-the-screen",
-      "title": "The letter/message panel revealed after the envelope opens must remain fixed and perfectly centered in the viewport at all times — it must not shift, drift, slide, or animate its position after the reveal. The panel's centering must be enforced with stable, non-animated positioning (e.g., fixed positioning with transform-based centering) so that no keyframe, state change, or re-render can cause it to move from the center of the screen.",
+      "id": "feature-replace-the-current-frontend-app-with-a-faithful-react-tailwind-implementation-of-the-provided-html-design-the-page-must-display-a-dark-background-1a1a1a-four-floating-emoji-elements-that-animate-upward-with-a-float-keyframe-a-centered-parchment-style-letter-container-max-width-650px-background-fdfcf0-gold-border-d4af37-box-shadow-fadein-animation-a-dancing-script-header-reading-to-my-dearest-priya-cutee-in-maroon-800000-with-a-gold-double-bottom-border-the-full-letter-body-text-in-eb-garamond-with-justified-alignment-and-line-height-1-9-inline-highlighted-spans-styled-italic-bold-maroon-with-wavy-gold-underline-for-the-phrases-please-don-t-misunderstand-my-intentions-and-grace-note-in-my-life-a-right-aligned-cursive-footer-reading-always-yours-and-a-centered-maroon-radial-gradient-wax-seal-circle-with-gold-letter-p-import-dancing-script-playfair-display-and-eb-garamond-from-google-fonts-apply-responsive-styles-reducing-padding-and-font-sizes-on-screens-below-480px",
+      "title": "Replace the current frontend app with a faithful React/Tailwind implementation of the provided HTML design. The page must display a dark background (#1a1a1a), four floating emoji elements (❤️, ✨, 🕊️, 🌹) that animate upward with a float keyframe, a centered parchment-style letter container (max-width 650px, background #fdfcf0, gold border #d4af37, box-shadow, fadeIn animation), a Dancing Script header reading 'To my dearest Priya (Cutee) 📜✨' in maroon (#800000) with a gold double bottom border, the full letter body text in EB Garamond with justified alignment and line-height 1.9, inline highlighted spans styled italic/bold/maroon with wavy gold underline for the phrases 'Please don't misunderstand my intentions;' and 'grace note in my life;', a right-aligned cursive footer reading 'Always yours, ❤️', and a centered maroon radial-gradient wax seal circle with gold letter 'P'. Import Dancing Script, Playfair Display, and EB Garamond from Google Fonts. Apply responsive styles reducing padding and font sizes on screens below 480px.",
       "reqIds": [
         "REQ-1"
       ],

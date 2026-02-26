@@ -1,39 +1,44 @@
 {
   "kind": "build_request",
-  "title": "Fix message box to stay centered and stationary after envelope opens",
+  "title": "Rebuild love letter page from provided HTML code",
   "projectName": "For My Cutee",
-  "priority": "high",
+  "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "The letter/message panel revealed after the envelope opens must remain fixed and perfectly centered in the viewport at all times — it must not shift, drift, slide, or animate its position after the reveal. The panel's centering must be enforced with stable, non-animated positioning (e.g., fixed positioning with transform-based centering) so that no keyframe, state change, or re-render can cause it to move from the center of the screen.",
+      "text": "Replace the current frontend app with a faithful React/Tailwind implementation of the provided HTML design. The page must display a dark background (#1a1a1a), four floating emoji elements (❤️, ✨, 🕊️, 🌹) that animate upward with a float keyframe, a centered parchment-style letter container (max-width 650px, background #fdfcf0, gold border #d4af37, box-shadow, fadeIn animation), a Dancing Script header reading 'To my dearest Priya (Cutee) 📜✨' in maroon (#800000) with a gold double bottom border, the full letter body text in EB Garamond with justified alignment and line-height 1.9, inline highlighted spans styled italic/bold/maroon with wavy gold underline for the phrases 'Please don't misunderstand my intentions;' and 'grace note in my life;', a right-aligned cursive footer reading 'Always yours, ❤️', and a centered maroon radial-gradient wax seal circle with gold letter 'P'. Import Dancing Script, Playfair Display, and EB Garamond from Google Fonts. Apply responsive styles reducing padding and font sizes on screens below 480px.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-last"
         ],
         "quotes": [
-          "The box carring the message must stay at the middle of the screen and should not move"
+          "Not the draft make a new one with the new code i have provided to you"
         ]
       },
       "acceptanceCriteria": [
-        "After clicking the envelope to open it, the letter/message panel appears exactly centered both horizontally and vertically in the viewport.",
-        "The letter panel does not move, drift, or animate its position at any point after it becomes visible.",
-        "The panel remains centered regardless of scroll position or any ongoing animations (e.g., star background, envelope flap).",
-        "The centering holds across different screen sizes and viewport dimensions.",
-        "No CSS transition or keyframe animation affects the `top`, `left`, `right`, `bottom`, or `transform` (translate) properties of the panel after it is shown."
+        "Dark #1a1a1a full-viewport background is rendered",
+        "Four floating emoji elements (❤️, ✨, 🕊️, 🌹) animate upward with staggered delays",
+        "Letter container is centered, has a cream parchment background (#fdfcf0), gold border (#d4af37), and fades in on load",
+        "Header reads 'To my dearest Priya (Cutee) 📜✨' in Dancing Script, maroon color, with a gold double-line bottom border",
+        "All five letter paragraphs are rendered in full with correct emoji and line breaks",
+        "The phrases 'Please don't misunderstand my intentions;' and 'grace note in my life;' are styled italic, bold, maroon, with wavy gold underline",
+        "Footer reads 'Always yours, ❤️' right-aligned in Dancing Script",
+        "Wax seal is a 70×70px maroon radial-gradient circle displaying gold letter 'P'",
+        "On screens narrower than 480px, padding reduces and font sizes scale down as specified"
       ]
     }
   ],
   "constraints": [
-    "Do not alter the envelope open/close animation or the wax seal fade effect.",
-    "Do not modify any files under frontend/src/hooks/ (immutable paths).",
-    "Do not modify frontend/src/components/ui/ components."
+    "Do not reuse or modify the existing envelope/letter animation components — build fresh components matching the provided HTML design exactly",
+    "Do not include the envelope open interaction or star background from the previous version",
+    "All letter text content must match the provided HTML verbatim"
   ],
   "nonGoals": [
-    "Adding new animations or visual effects to the letter panel.",
-    "Changing the letter content or typography.",
-    "Modifying the star background or backdrop overlay behavior."
+    "Retaining any existing envelope animation, SealButton, StarBackground, or Envelope components",
+    "Backend changes",
+    "Internet Identity authentication",
+    "Music or audio features"
   ],
   "imageRequirements": {
     "required": [],

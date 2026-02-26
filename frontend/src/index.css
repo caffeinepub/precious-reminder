@@ -2,47 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Google Fonts are loaded via index.html ── */
+
 @layer base {
     :root {
         --radius: 0.5rem;
 
-        --gold: oklch(0.75 0.10 82);
-        --dark-gold: oklch(0.50 0.09 65);
-        --bg-dark: oklch(0.10 0.00 0);
-
-        /* Envelope design tokens */
-        --primary-red: #800020;
-        --gold-hex: #d4af37;
-        --parchment: #fdf5e6;
-
         --background: 0.10 0.00 0;
         --foreground: 0.75 0.10 82;
-
         --card: 0.14 0.02 340;
         --card-foreground: 0.75 0.10 82;
-
         --popover: 0.14 0.02 340;
         --popover-foreground: 0.75 0.10 82;
-
         --primary: 0.75 0.10 82;
         --primary-foreground: 0.10 0.00 0;
-
         --secondary: 0.16 0.02 340;
         --secondary-foreground: 0.75 0.10 82;
-
         --muted: 0.16 0.02 340;
         --muted-foreground: 0.52 0.05 75;
-
         --accent: 0.75 0.10 82;
         --accent-foreground: 0.10 0.00 0;
-
         --destructive: 0.52 0.18 25;
         --destructive-foreground: 0.99 0.01 20;
-
         --border: 0.75 0.10 82;
         --input: 0.18 0.02 340;
         --ring: 0.75 0.10 82;
-
         --chart-1: 0.75 0.10 82;
         --chart-2: 0.62 0.08 72;
         --chart-3: 0.52 0.07 62;
@@ -53,28 +37,20 @@
     .dark {
         --background: 0.10 0.00 0;
         --foreground: 0.75 0.10 82;
-
         --card: 0.14 0.02 340;
         --card-foreground: 0.75 0.10 82;
-
         --popover: 0.14 0.02 340;
         --popover-foreground: 0.75 0.10 82;
-
         --primary: 0.75 0.10 82;
         --primary-foreground: 0.10 0.00 0;
-
         --secondary: 0.16 0.02 340;
         --secondary-foreground: 0.75 0.10 82;
-
         --muted: 0.16 0.02 340;
         --muted-foreground: 0.52 0.05 75;
-
         --accent: 0.75 0.10 82;
         --accent-foreground: 0.10 0.00 0;
-
         --destructive: 0.52 0.18 25;
         --destructive-foreground: 0.99 0.01 20;
-
         --border: 0.75 0.10 82;
         --input: 0.18 0.02 340;
         --ring: 0.75 0.10 82;
@@ -92,181 +68,202 @@
     }
 
     body {
-        /* Dark radial gradient — deep black center to pure black edges */
-        background: radial-gradient(circle, #1a1a1a 0%, #000 100%);
-        font-family: 'Playfair Display', Georgia, serif;
+        background-color: #1a1a1a;
+        font-family: 'EB Garamond', Georgia, serif;
         overflow-x: hidden;
     }
 }
 
-@layer utilities {
-    .font-cinzel {
-        font-family: 'Cinzel', serif;
+/* ── Keyframe animations ── */
+@keyframes float {
+    0%   { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    50%  { opacity: 0.5; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes accordion-down {
+    from { height: 0; }
+    to   { height: var(--radix-accordion-content-height); }
+}
+
+@keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height); }
+    to   { height: 0; }
+}
+
+/* ── Page layout ── */
+.love-letter-bg {
+    margin: 0;
+    padding: 0;
+    background-color: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    font-family: 'EB Garamond', Georgia, serif;
+    overflow-x: hidden;
+    position: relative;
+    padding-bottom: 60px;
+}
+
+/* ── Floating background emojis ── */
+.bg-emoji {
+    position: fixed;
+    color: rgba(128, 0, 0, 0.15);
+    font-size: 20px;
+    z-index: 0;
+    animation: float 10s linear infinite;
+    pointer-events: none;
+    bottom: 0;
+}
+
+/* ── Letter container ── */
+.letter-container {
+    width: 85%;
+    max-width: 650px;
+    background: #fdfcf0;
+    padding: 40px 50px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    border: 2px solid #d4af37;
+    position: relative;
+    animation: fadeIn 2.5s ease-out;
+    margin: 40px 20px 20px;
+    z-index: 1;
+}
+
+/* ── Parchment texture overlay ── */
+.parchment-overlay {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ── Letter header ── */
+.letter-header {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.8rem;
+    color: #800000;
+    margin-bottom: 25px;
+    border-bottom: 1px double #d4af37;
+    padding-bottom: 10px;
+    line-height: 1.3;
+}
+
+/* ── Letter body ── */
+.letter-body {
+    position: relative;
+    z-index: 1;
+    line-height: 1.9;
+    font-size: 1.2rem;
+    color: #2c2c2c;
+    text-align: justify;
+    font-family: 'EB Garamond', Georgia, serif;
+}
+
+.letter-body p {
+    margin-bottom: 1.2em;
+}
+
+.letter-body p:last-child {
+    margin-bottom: 0;
+}
+
+/* ── Highlighted phrases ── */
+.highlight {
+    font-style: italic;
+    color: #800000;
+    font-weight: bold;
+    text-decoration: underline wavy #d4af37;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 3px;
+}
+
+/* ── Footer signature ── */
+.letter-footer {
+    position: relative;
+    z-index: 1;
+    margin-top: 45px;
+    text-align: right;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: #800000;
+}
+
+/* ── Wax seal ── */
+.wax-seal {
+    position: relative;
+    z-index: 1;
+    margin: 30px auto 0;
+    width: 70px;
+    height: 70px;
+    background: radial-gradient(circle, #a52a2a, #800000);
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #d4af37;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    border: 2px solid #600000;
+    font-weight: 400;
+}
+
+/* ── Attribution footer ── */
+.attribution-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px 16px;
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    color: rgba(212, 175, 55, 0.45);
+    z-index: 10;
+    background: linear-gradient(to top, rgba(26,26,26,0.9) 0%, transparent 100%);
+}
+
+/* ── Responsive: mobile ── */
+@media (max-width: 480px) {
+    .letter-container {
+        padding: 25px;
+        width: 90%;
     }
 
-    .font-great-vibes {
-        font-family: 'Great Vibes', cursive;
-    }
-
-    .font-playfair {
-        font-family: 'Playfair Display', Georgia, serif;
-    }
-
-    .font-dancing {
-        font-family: 'Dancing Script', cursive;
-    }
-
-    .font-poppins {
-        font-family: 'Poppins', sans-serif;
-    }
-
-    /* ── Letter header style ── */
     .letter-header {
-        font-family: 'Dancing Script', cursive;
-        font-size: 28px;
-        color: #800020;
-        margin-bottom: 15px;
-        border-bottom: 1px solid #d4af37;
-        display: inline-block;
-        padding-bottom: 4px;
+        font-size: 2.2rem;
     }
 
-    /* ── Letter body style ── */
     .letter-body {
-        font-family: 'Playfair Display', Georgia, serif;
-        font-size: 16px;
-        color: #333;
-        line-height: 1.6;
-        text-align: justify;
-        margin-bottom: 20px;
+        font-size: 1.1rem;
     }
 
-    /* ── Envelope flap animation ── */
-    @keyframes flapOpen {
-        from { transform: rotateX(0deg); }
-        to   { transform: rotateX(180deg); }
+    .letter-footer {
+        font-size: 1.7rem;
     }
+}
 
-    @keyframes flapClose {
-        from { transform: rotateX(180deg); }
-        to   { transform: rotateX(0deg); }
-    }
+/* ── Shadcn accordion animations ── */
+.animate-accordion-down {
+    animation: accordion-down 0.2s ease-out;
+}
 
-    /* ── Letter reveal: opacity + scale only, NO translateY so the fixed-centered panel never drifts ── */
-    @keyframes letterReveal {
-        0% {
-            opacity: 0;
-            transform: translate(-50%, -50%) scale(0.90);
-            filter: blur(4px);
-        }
-        60% {
-            opacity: 0.9;
-            transform: translate(-50%, -50%) scale(1.02);
-            filter: blur(0.5px);
-        }
-        100% {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
-            filter: blur(0);
-        }
-    }
-
-    /* ── bloomIn kept for LetterContainer (non-fixed elements) ── */
-    @keyframes bloomIn {
-        0% {
-            opacity: 0;
-            transform: scale(0.88) translateY(24px);
-            filter: blur(6px);
-        }
-        40% {
-            opacity: 0.7;
-            transform: scale(1.02) translateY(-4px);
-            filter: blur(1px);
-        }
-        70% {
-            opacity: 0.95;
-            transform: scale(0.99) translateY(2px);
-            filter: blur(0);
-        }
-        100% {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-            filter: blur(0);
-        }
-    }
-
-    .animate-bloom-in {
-        animation: bloomIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    }
-
-    /* Legacy alias kept for any existing references */
-    @keyframes fadeInLetter {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .animate-fade-in-letter {
-        animation: fadeInLetter 2s ease forwards;
-    }
-
-    /* ── Star twinkle — softer, gentler pulse ── */
-    @keyframes twinkle {
-        0%, 100% { opacity: 0.12; transform: scale(0.88); }
-        50% { opacity: 0.55; transform: scale(1.1); }
-    }
-
-    .animate-twinkle {
-        animation: twinkle var(--twinkle-duration, 4s) ease-in-out infinite;
-    }
-
-    /* ── Particle float drift ── */
-    @keyframes floatDrift {
-        0%   { transform: translate(0, 0); }
-        25%  { transform: translate(var(--drift-x, 10px), calc(var(--drift-y, -6px) * 0.5)); }
-        50%  { transform: translate(calc(var(--drift-x, 10px) * 0.6), var(--drift-y, -6px)); }
-        75%  { transform: translate(calc(var(--drift-x, 10px) * -0.3), calc(var(--drift-y, -6px) * 0.3)); }
-        100% { transform: translate(0, 0); }
-    }
-
-    .animate-float-drift {
-        animation: floatDrift var(--drift-duration, 18s) ease-in-out infinite;
-    }
-
-    /* ── Floating hearts / sparkles — gentle, slow upward drift ── */
-    @keyframes floatUp {
-        0%   { transform: translateY(0px) scale(1) rotate(0deg); opacity: var(--shape-opacity, 0.12); }
-        20%  { transform: translateY(-14px) scale(1.06) rotate(4deg); opacity: calc(var(--shape-opacity, 0.12) * 1.3); }
-        50%  { transform: translateY(-28px) scale(0.96) rotate(-3deg); opacity: var(--shape-opacity, 0.12); }
-        80%  { transform: translateY(-16px) scale(1.04) rotate(2deg); opacity: calc(var(--shape-opacity, 0.12) * 1.15); }
-        100% { transform: translateY(0px) scale(1) rotate(0deg); opacity: var(--shape-opacity, 0.12); }
-    }
-
-    .animate-float-up {
-        animation: floatUp var(--float-duration, 24s) ease-in-out infinite;
-    }
-
-    /* ── Accordion (shadcn) ── */
-    @keyframes accordion-down {
-        from { height: 0; }
-        to { height: var(--radix-accordion-content-height); }
-    }
-
-    @keyframes accordion-up {
-        from { height: var(--radix-accordion-content-height); }
-        to { height: 0; }
-    }
-
-    .animate-accordion-down {
-        animation: accordion-down 0.2s ease-out;
-    }
-
-    .animate-accordion-up {
-        animation: accordion-up 0.2s ease-out;
-    }
+.animate-accordion-up {
+    animation: accordion-up 0.2s ease-out;
 }

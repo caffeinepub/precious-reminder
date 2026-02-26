@@ -2,11 +2,16 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-the-letter-message-panel-revealed-after-the-envelope-opens-must-remain-fixed-and-perfectly-centered-in-the-viewport-at-all-times-it-must-not-shift-drift-slide-or-animate-its-position-after-the-reveal-the-panel-s-centering-must-be-enforced-with-stable-non-animated-positioning-e-g-fixed-positioning-with-transform-based-centering-so-that-no-keyframe-state-change-or-re-render-can-cause-it-to-move-from-the-center-of-the-screen",
-      "featureTitle": "The letter/message panel revealed after the envelope opens must remain fixed and perfectly centered in the viewport at all times — it must not shift, drift, slide, or animate its position after the reveal. The panel's centering must be enforced with stable, non-animated positioning (e.g., fixed positioning with transform-based centering) so that no keyframe, state change, or re-render can cause it to move from the center of the screen.",
+      "featureId": "feature-replace-the-current-frontend-app-with-a-faithful-react-tailwind-implementation-of-the-provided-html-design-the-page-must-display-a-dark-background-1a1a1a-four-floating-emoji-elements-that-animate-upward-with-a-float-keyframe-a-centered-parchment-style-letter-container-max-width-650px-background-fdfcf0-gold-border-d4af37-box-shadow-fadein-animation-a-dancing-script-header-reading-to-my-dearest-priya-cutee-in-maroon-800000-with-a-gold-double-bottom-border-the-full-letter-body-text-in-eb-garamond-with-justified-alignment-and-line-height-1-9-inline-highlighted-spans-styled-italic-bold-maroon-with-wavy-gold-underline-for-the-phrases-please-don-t-misunderstand-my-intentions-and-grace-note-in-my-life-a-right-aligned-cursive-footer-reading-always-yours-and-a-centered-maroon-radial-gradient-wax-seal-circle-with-gold-letter-p-import-dancing-script-playfair-display-and-eb-garamond-from-google-fonts-apply-responsive-styles-reducing-padding-and-font-sizes-on-screens-below-480px",
+      "featureTitle": "Replace the current frontend app with a faithful React/Tailwind implementation of the provided HTML design. The page must display a dark background (#1a1a1a), four floating emoji elements (❤️, ✨, 🕊️, 🌹) that animate upward with a float keyframe, a centered parchment-style letter container (max-width 650px, background #fdfcf0, gold border #d4af37, box-shadow, fadeIn animation), a Dancing Script header reading 'To my dearest Priya (Cutee) 📜✨' in maroon (#800000) with a gold double bottom border, the full letter body text in EB Garamond with justified alignment and line-height 1.9, inline highlighted spans styled italic/bold/maroon with wavy gold underline for the phrases 'Please don't misunderstand my intentions;' and 'grace note in my life;', a right-aligned cursive footer reading 'Always yours, ❤️', and a centered maroon radial-gradient wax seal circle with gold letter 'P'. Import Dancing Script, Playfair Display, and EB Garamond from Google Fonts. Apply responsive styles reducing padding and font sizes on screens below 480px.",
       "files": [
-        "frontend/src/components/Envelope.tsx",
-        "frontend/src/index.css"
+        "frontend/index.html",
+        "frontend/src/App.tsx",
+        "frontend/src/components/LetterContainer.tsx",
+        "frontend/src/components/LetterContent.tsx",
+        "frontend/src/components/LoveLetterPage.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
       ],
       "components": [
         "core-infrastructure@1.0.2",

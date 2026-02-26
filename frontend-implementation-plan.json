@@ -1,33 +1,57 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Fix message box to stay centered and stationary after envelope opens",
+  "title": "Rebuild love letter page from provided HTML code",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Ensure the letter/message panel remains fixed and perfectly centered in the viewport after the envelope opens, with no movement, drift, or position animations",
+      "summary": "Replace the current frontend app with a faithful React/Tailwind implementation of the provided HTML design featuring a dark background, floating emoji animations, a parchment-style letter container with gold accents, Dancing Script/EB Garamond typography, highlighted phrases with wavy underlines, and a wax seal",
       "acceptanceCriteria": [
-        "After clicking the envelope to open it, the letter/message panel appears exactly centered both horizontally and vertically in the viewport.",
-        "The letter panel does not move, drift, or animate its position at any point after it becomes visible.",
-        "The panel remains centered regardless of scroll position or any ongoing animations (e.g., star background, envelope flap).",
-        "The centering holds across different screen sizes and viewport dimensions.",
-        "No CSS transition or keyframe animation affects the `top`, `left`, `right`, `bottom`, or `transform` (translate) properties of the panel after it is shown."
+        "Dark #1a1a1a full-viewport background is rendered",
+        "Four floating emoji elements (❤️, ✨, 🕊️, 🌹) animate upward with staggered delays",
+        "Letter container is centered, has a cream parchment background (#fdfcf0), gold border (#d4af37), and fades in on load",
+        "Header reads 'To my dearest Priya (Cutee) 📜✨' in Dancing Script, maroon color, with a gold double-line bottom border",
+        "All five letter paragraphs are rendered in full with correct emoji and line breaks",
+        "The phrases 'Please don't misunderstand my intentions;' and 'grace note in my life;' are styled italic, bold, maroon, with wavy gold underline",
+        "Footer reads 'Always yours, ❤️' right-aligned in Dancing Script",
+        "Wax seal is a 70×70px maroon radial-gradient circle displaying gold letter 'P'",
+        "On screens narrower than 480px, padding reduces and font sizes scale down as specified"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/Envelope.tsx",
+          "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Remove any CSS transitions or animations affecting the letter panel's position properties (top, left, right, bottom, transform translate). Ensure the letter panel wrapper uses fixed positioning with stable transform-based centering (e.g., position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);) that is not animated or transitioned. Strip out any keyframes or state-driven position changes that could cause the panel to shift after it becomes visible. Verify that the panel's centering style is applied immediately when isOpen becomes true and remains constant thereafter."
+          "description": "Replace the current envelope-based layout with a simple dark background container (#1a1a1a) that renders the new LoveLetterPage component. Remove all references to Envelope, StarBackground, and footer attribution. Set min-height to 100vh and apply flex centering."
+        },
+        {
+          "path": "frontend/src/components/LoveLetterPage.tsx",
+          "operation": "create",
+          "description": "Create the main page component that renders the four floating emoji elements (❤️, ✨, 🕊️, 🌹) with absolute positioning and upward float animations using staggered animation delays, and the centered LetterContainer component with the parchment design."
         },
         {
           "path": "frontend/src/components/LetterContainer.tsx",
           "operation": "modify",
-          "description": "Remove or disable the bloomIn animation and any other animations that affect positioning or transform properties of the letter container. Ensure the container does not apply any CSS transitions or keyframes to top, left, right, bottom, or transform (translate) properties. The container should render in a stable, non-animated state to prevent any visual drift or movement after it appears. Keep decorative animations (e.g., opacity, scale for entrance effect) only if they do not interfere with the panel's centered position."
+          "description": "Replace the existing wine-gradient decorative letter surface with a parchment-style container: max-width 650px, background #fdfcf0, 8px solid gold border (#d4af37), multiple box-shadows for depth, 12px border-radius, padding 40px, and a fadeIn animation on mount. Remove all previous gradient and ornament styles."
+        },
+        {
+          "path": "frontend/src/components/LetterContent.tsx",
+          "operation": "modify",
+          "description": "Replace the existing letter content with the exact text from the provided HTML design. Render the Dancing Script header 'To my dearest Priya (Cutee) 📜✨' in maroon (#800000) with a gold double bottom border. Render all five paragraphs in EB Garamond with justified text alignment and line-height 1.9. Apply italic, bold, maroon color, and wavy gold text-decoration-line to the phrases 'Please don't misunderstand my intentions;' and 'grace note in my life;'. Add the right-aligned footer 'Always yours, ❤️' in Dancing Script, and center a 70×70px maroon radial-gradient wax seal circle with gold letter 'P'."
         },
         {
           "path": "frontend/src/index.css",
           "operation": "modify",
-          "description": "Review and remove or modify any keyframe animations (such as bloomIn or letter-related animations) that apply translate, top, left, right, or bottom transforms to the letter panel or its container. Ensure that global CSS does not introduce any positional animations that could cause the letter panel to drift after it opens. If bloomIn or similar animations are defined, either remove them entirely or ensure they only affect opacity/scale and never positioning properties."
+          "description": "Add keyframe animations for 'float' (upward translation with subtle rotation) and 'fadeIn' (opacity 0 to 1 with slight scale). Define responsive media query for screens below 480px to reduce container padding to 20px and scale down font sizes. Ensure Tailwind base/utilities remain intact."
+        },
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Ensure Google Fonts imports include Dancing Script, Playfair Display, and EB Garamond. Remove or retain other fonts as needed, but these three are mandatory for the new design."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend the theme to include custom colors for maroon (#800000), dark background (#1a1a1a), parchment (#fdfcf0), and gold (#d4af37). Add float and fadeIn animations to the theme.animation and theme.keyframes sections. Ensure Dancing Script, EB Garamond, and Playfair Display are registered in the fontFamily configuration."
         }
       ]
     }
