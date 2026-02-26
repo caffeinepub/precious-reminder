@@ -2,10 +2,11 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-fix-the-click-to-open-interaction-on-the-envelope-component-so-that-clicking-the-envelope-or-its-wax-seal-click-to-open-prompt-correctly-toggles-the-open-state-causing-the-letter-panel-to-rise-out-of-the-envelope-as-intended",
-      "featureTitle": "Fix the click-to-open interaction on the Envelope component so that clicking the envelope (or its wax seal / 'click to open' prompt) correctly toggles the open state, causing the letter panel to rise out of the envelope as intended.",
+      "featureId": "feature-the-letter-message-panel-revealed-after-the-envelope-opens-must-remain-fixed-and-perfectly-centered-in-the-viewport-at-all-times-it-must-not-shift-drift-slide-or-animate-its-position-after-the-reveal-the-panel-s-centering-must-be-enforced-with-stable-non-animated-positioning-e-g-fixed-positioning-with-transform-based-centering-so-that-no-keyframe-state-change-or-re-render-can-cause-it-to-move-from-the-center-of-the-screen",
+      "featureTitle": "The letter/message panel revealed after the envelope opens must remain fixed and perfectly centered in the viewport at all times — it must not shift, drift, slide, or animate its position after the reveal. The panel's centering must be enforced with stable, non-animated positioning (e.g., fixed positioning with transform-based centering) so that no keyframe, state change, or re-render can cause it to move from the center of the screen.",
       "files": [
-        "frontend/src/components/Envelope.tsx"
+        "frontend/src/components/Envelope.tsx",
+        "frontend/src/index.css"
       ],
       "components": [
         "core-infrastructure@1.0.2",

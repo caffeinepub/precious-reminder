@@ -1,16 +1,18 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "New project",
-  "architectural_notes": [],
+  "summary": "Valentine's/love letter app featuring an envelope animation that opens to reveal a letter, with a centered message box.",
+  "architectural_notes": [
+    "The message box (envelope/letter container) must remain fixed at the center of the screen at all times and must not move or animate positionally."
+  ],
   "known_issues": [
-    "'Click to open' interaction is not functioning as expected"
+    "Message box drifts or moves off-center after the envelope opens animation plays."
   ],
   "isFixRequest": true,
   "existing_features": [
     {
-      "id": "feature-fix-the-click-to-open-interaction-on-the-envelope-component-so-that-clicking-the-envelope-or-its-wax-seal-click-to-open-prompt-correctly-toggles-the-open-state-causing-the-letter-panel-to-rise-out-of-the-envelope-as-intended",
-      "title": "Fix the click-to-open interaction on the Envelope component so that clicking the envelope (or its wax seal / 'click to open' prompt) correctly toggles the open state, causing the letter panel to rise out of the envelope as intended.",
+      "id": "feature-the-letter-message-panel-revealed-after-the-envelope-opens-must-remain-fixed-and-perfectly-centered-in-the-viewport-at-all-times-it-must-not-shift-drift-slide-or-animate-its-position-after-the-reveal-the-panel-s-centering-must-be-enforced-with-stable-non-animated-positioning-e-g-fixed-positioning-with-transform-based-centering-so-that-no-keyframe-state-change-or-re-render-can-cause-it-to-move-from-the-center-of-the-screen",
+      "title": "The letter/message panel revealed after the envelope opens must remain fixed and perfectly centered in the viewport at all times — it must not shift, drift, slide, or animate its position after the reveal. The panel's centering must be enforced with stable, non-animated positioning (e.g., fixed positioning with transform-based centering) so that no keyframe, state change, or re-render can cause it to move from the center of the screen.",
       "reqIds": [
         "REQ-1"
       ],
@@ -18,7 +20,8 @@
     }
   ],
   "new_feature_requests": [],
-  "projectName": "Fix 'Click to Open' envelope interaction",
+  "gameProjectType": "none",
+  "projectName": "For My Cutee",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

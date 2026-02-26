@@ -1,14 +1,23 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-25T04:51:41.157Z",
-  "summary": "The diff modifies frontend/src/components/Envelope.tsx to implement the click-to-open envelope interaction. The implementation uses useState to track open/closed state, onClick handler to toggle state, CSS transitions for the letter panel rising animation, cursor:pointer on the closed envelope, wax seal visibility toggle, and a 'click to open' hint text. All acceptance criteria for REQ-1 appear to be addressed.",
+  "generatedAt": "2026-02-25T05:02:15.375Z",
+  "summary": "The diff implements REQ-1 by refactoring the letter/message panel in Envelope.tsx to use fixed positioning with transform-based centering (position: fixed, top: 50%, left: 50%, transform: translate(-50%, -50%)), and by updating the letterReveal keyframe in index.css to bake translate(-50%, -50%) into every step so the animation only affects opacity/scale — never positional properties. This directly addresses all acceptance criteria for REQ-1.",
   "missing_requirements": [],
-  "hallucinated_features": [],
-  "confidence": 0.9,
+  "hallucinated_features": [
+    {
+      "description": "A clickable backdrop overlay div was added behind the letter panel that closes the envelope when clicked.",
+      "reason": "The build request only asked for the letter panel to remain fixed and centered. It did not request any click-to-close backdrop or toggle-close behavior for the letter panel. Adding a new dismiss mechanism is beyond the stated scope.",
+      "evidence": [
+        "frontend/src/components/Envelope.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.82,
   "changed_files": [
     "frontend-file-summaries.txt",
     "frontend/src/components/Envelope.tsx",
+    "frontend/src/index.css",
     "project_state.json"
   ]
 }

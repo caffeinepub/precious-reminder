@@ -1,23 +1,33 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Fix 'Click to Open' envelope interaction",
+  "title": "Fix message box to stay centered and stationary after envelope opens",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Fix the click-to-open interaction on the Envelope component so that clicking the envelope (or its wax seal / 'click to open' prompt) correctly toggles the open state, causing the letter panel to rise out of the envelope as intended.",
+      "summary": "Ensure the letter/message panel remains fixed and perfectly centered in the viewport after the envelope opens, with no movement, drift, or position animations",
       "acceptanceCriteria": [
-        "Clicking anywhere on the closed envelope triggers the open animation and the letter panel rises out.",
-        "The open/closed toggle state is correctly tracked in React state.",
-        "No JavaScript console errors occur when clicking the envelope.",
-        "Clicking again (or a close button if present) returns the envelope to its closed state.",
-        "The wax seal and any 'click to open' label are visually interactive (cursor: pointer) and respond to click events."
+        "After clicking the envelope to open it, the letter/message panel appears exactly centered both horizontally and vertically in the viewport.",
+        "The letter panel does not move, drift, or animate its position at any point after it becomes visible.",
+        "The panel remains centered regardless of scroll position or any ongoing animations (e.g., star background, envelope flap).",
+        "The centering holds across different screen sizes and viewport dimensions.",
+        "No CSS transition or keyframe animation affects the `top`, `left`, `right`, `bottom`, or `transform` (translate) properties of the panel after it is shown."
       ],
       "file_operations": [
         {
           "path": "frontend/src/components/Envelope.tsx",
           "operation": "modify",
-          "description": "Fix the click event handler to properly toggle the open state when the envelope or wax seal is clicked. Ensure the click handler is attached to the correct DOM elements (envelope container, wax seal, and any 'click to open' prompt). Add cursor: pointer styling to interactive elements. Verify that the isOpen state correctly controls the letter panel's rise-out animation classes. Fix any event propagation issues that might prevent clicks from registering. Ensure the toggle function properly updates React state and triggers re-renders."
+          "description": "Remove any CSS transitions or animations affecting the letter panel's position properties (top, left, right, bottom, transform translate). Ensure the letter panel wrapper uses fixed positioning with stable transform-based centering (e.g., position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);) that is not animated or transitioned. Strip out any keyframes or state-driven position changes that could cause the panel to shift after it becomes visible. Verify that the panel's centering style is applied immediately when isOpen becomes true and remains constant thereafter."
+        },
+        {
+          "path": "frontend/src/components/LetterContainer.tsx",
+          "operation": "modify",
+          "description": "Remove or disable the bloomIn animation and any other animations that affect positioning or transform properties of the letter container. Ensure the container does not apply any CSS transitions or keyframes to top, left, right, bottom, or transform (translate) properties. The container should render in a stable, non-animated state to prevent any visual drift or movement after it appears. Keep decorative animations (e.g., opacity, scale for entrance effect) only if they do not interfere with the panel's centered position."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Review and remove or modify any keyframe animations (such as bloomIn or letter-related animations) that apply translate, top, left, right, or bottom transforms to the letter panel or its container. Ensure that global CSS does not introduce any positional animations that could cause the letter panel to drift after it opens. If bloomIn or similar animations are defined, either remove them entirely or ensure they only affect opacity/scale and never positioning properties."
         }
       ]
     }

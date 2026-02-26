@@ -1,11 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Fix the broken "click to open" interaction on the Envelope component so the letter panel correctly rises out when the envelope is clicked.
+**Goal:** Fix the message/letter panel so it stays perfectly centered and stationary in the viewport after the envelope opens.
 
 **Planned changes:**
-- Fix the click handler on the Envelope component so clicking the envelope, wax seal, or "click to open" prompt correctly toggles the open/closed state.
-- Ensure the open/closed state is properly tracked in React state.
-- Make the wax seal and "click to open" label visually interactive (`cursor: pointer`) and responsive to click events.
+- Update the letter/message panel positioning to use stable, fixed centering (e.g., fixed positioning with transform-based centering) so it cannot shift, drift, or animate its position after reveal.
+- Ensure no CSS transition or keyframe animation affects the panel's position properties (`top`, `left`, `right`, `bottom`, or translate transforms) once the panel is visible.
+- Verify centering holds across different screen sizes and scroll positions.
 
-**User-visible outcome:** Users can click the envelope (or its wax seal / label) to open it and watch the letter rise out, and click again to close it, with no console errors.
+**User-visible outcome:** After clicking the envelope to open it, the message panel appears exactly centered on screen and stays there without any movement or drift.

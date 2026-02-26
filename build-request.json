@@ -1,35 +1,39 @@
 {
   "kind": "build_request",
-  "title": "Fix 'Click to Open' envelope interaction",
+  "title": "Fix message box to stay centered and stationary after envelope opens",
+  "projectName": "For My Cutee",
   "priority": "high",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Fix the click-to-open interaction on the Envelope component so that clicking the envelope (or its wax seal / 'click to open' prompt) correctly toggles the open state, causing the letter panel to rise out of the envelope as intended.",
+      "text": "The letter/message panel revealed after the envelope opens must remain fixed and perfectly centered in the viewport at all times — it must not shift, drift, slide, or animate its position after the reveal. The panel's centering must be enforced with stable, non-animated positioning (e.g., fixed positioning with transform-based centering) so that no keyframe, state change, or re-render can cause it to move from the center of the screen.",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-4"
         ],
         "quotes": [
-          "Why isn't the 'click to open' working"
+          "The box carring the message must stay at the middle of the screen and should not move"
         ]
       },
       "acceptanceCriteria": [
-        "Clicking anywhere on the closed envelope triggers the open animation and the letter panel rises out.",
-        "The open/closed toggle state is correctly tracked in React state.",
-        "No JavaScript console errors occur when clicking the envelope.",
-        "Clicking again (or a close button if present) returns the envelope to its closed state.",
-        "The wax seal and any 'click to open' label are visually interactive (cursor: pointer) and respond to click events."
+        "After clicking the envelope to open it, the letter/message panel appears exactly centered both horizontally and vertically in the viewport.",
+        "The letter panel does not move, drift, or animate its position at any point after it becomes visible.",
+        "The panel remains centered regardless of scroll position or any ongoing animations (e.g., star background, envelope flap).",
+        "The centering holds across different screen sizes and viewport dimensions.",
+        "No CSS transition or keyframe animation affects the `top`, `left`, `right`, `bottom`, or `transform` (translate) properties of the panel after it is shown."
       ]
     }
   ],
   "constraints": [
-    "Do not alter frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or any files under frontend/src/components/ui."
+    "Do not alter the envelope open/close animation or the wax seal fade effect.",
+    "Do not modify any files under frontend/src/hooks/ (immutable paths).",
+    "Do not modify frontend/src/components/ui/ components."
   ],
   "nonGoals": [
-    "Adding new envelope animations or visual effects beyond fixing the existing click interaction.",
-    "Backend changes — this is a purely frontend interaction bug."
+    "Adding new animations or visual effects to the letter panel.",
+    "Changing the letter content or typography.",
+    "Modifying the star background or backdrop overlay behavior."
   ],
   "imageRequirements": {
     "required": [],

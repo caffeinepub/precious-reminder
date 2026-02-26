@@ -152,7 +152,26 @@
         to   { transform: rotateX(0deg); }
     }
 
-    /* ── Letter reveal: bloom in from slightly scaled-down ── */
+    /* ── Letter reveal: opacity + scale only, NO translateY so the fixed-centered panel never drifts ── */
+    @keyframes letterReveal {
+        0% {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.90);
+            filter: blur(4px);
+        }
+        60% {
+            opacity: 0.9;
+            transform: translate(-50%, -50%) scale(1.02);
+            filter: blur(0.5px);
+        }
+        100% {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+            filter: blur(0);
+        }
+    }
+
+    /* ── bloomIn kept for LetterContainer (non-fixed elements) ── */
     @keyframes bloomIn {
         0% {
             opacity: 0;
