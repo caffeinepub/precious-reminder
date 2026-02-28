@@ -1,16 +1,43 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-26T00:07:38.561Z",
-  "summary": "The diff implements REQ-1 fully. A new WelcomeGate component was added, App.tsx was updated to show the gate before LoveLetterPage, and index.css was extended with gate-specific keyframe animations and styles. All acceptance criteria appear to be met: full-screen overlay, 'Welcome Cutee' button, state-based gate/content switching, dark romantic styling with gold/maroon accents, and fade animation on entry/exit.",
-  "missing_requirements": [],
-  "hallucinated_features": [],
-  "confidence": 0.95,
+  "generatedAt": "2026-02-28T02:58:04.005Z",
+  "summary": "The diff implements almost all requirements quite thoroughly. All 8 REQs have corresponding implementations. Minor gaps exist: the HeartBurst component has a bug in its loop that likely causes only the first particle to be spawned (early return in loop), and the footer text says 'Eternally Yours' (mixed case) rather than 'ETERNALLY YOURS' (all caps, though CSS text-transform uppercase is present). Overall coverage is strong with a few minor concerns.",
+  "missing_requirements": [
+    {
+      "id": "REQ-6",
+      "requirement": "Spawn 100 heart particles from center flying outward",
+      "reason": "The HeartBurst.tsx useEffect loop has 'return () => clearTimeout(timeout)' inside the for-loop body, which causes the loop to exit after the first iteration. Only 1 particle would actually be spawned instead of 100.",
+      "evidence": [
+        "frontend/src/components/HeartBurst.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "A Caffeine.ai attribution footer link is rendered in the GardenPage footer",
+      "reason": "The build request only asks for a footer reading 'ETERNALLY YOURS' in gold uppercase. The diff adds an additional 'Built with heart using Caffeine link' line that was not requested.",
+      "evidence": [
+        "frontend/src/components/GardenPage.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.82,
   "changed_files": [
     "frontend-file-summaries.txt",
+    "frontend/index.html",
     "frontend/src/App.tsx",
+    "frontend/src/components/FloatingHearts.tsx",
+    "frontend/src/components/FlowerGrid.tsx",
+    "frontend/src/components/GardenPage.tsx",
+    "frontend/src/components/HeartBurst.tsx",
+    "frontend/src/components/LoveLetterPage.tsx",
+    "frontend/src/components/MessageDisplay.tsx",
+    "frontend/src/components/SurpriseButton.tsx",
+    "frontend/src/components/ThankYouModal.tsx",
     "frontend/src/components/WelcomeGate.tsx",
     "frontend/src/index.css",
+    "frontend/tailwind.config.js",
     "project_state.json"
   ]
 }

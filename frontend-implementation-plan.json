@@ -1,34 +1,184 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Add 'Welcome Cutee' gate button before website content",
+  "title": "Rebuild 'A Garden for Priya' interactive flower garden app",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Add a full-screen welcome gate with 'Welcome Cutee' button that must be clicked before the main LoveLetterPage content becomes visible, styled to match the existing dark romantic theme",
+      "summary": "Create full-screen landing screen with radial gradient, italic subtitle, and gold-bordered ENTER button that fades to main content",
       "acceptanceCriteria": [
-        "On initial page load, only the gate screen is shown — the LoveLetterPage content is hidden.",
-        "The gate screen covers the full viewport.",
-        "A single button with the label 'Welcome Cutee' is centered on the gate screen.",
-        "Clicking the 'Welcome Cutee' button hides the gate and reveals the main LoveLetterPage content.",
-        "The gate's visual style (background, typography, button colors) is consistent with the existing dark romantic theme (dark background, gold/maroon accents, serif/cursive fonts).",
-        "The transition from gate to main content is smooth (e.g., fade or gentle animation)."
+        "Landing screen is displayed full-screen on initial load",
+        "Clicking ENTER fades out the landing page over ~1.2s then reveals main content",
+        "Button has gold border, uppercase letter-spacing, and hover effect that darkens background"
       ],
       "file_operations": [
         {
           "path": "frontend/src/components/WelcomeGate.tsx",
-          "operation": "create",
-          "description": "Create a new WelcomeGate component that renders a full-screen overlay with a dark romantic background (#1a1a1a or similar) and a centered 'Welcome Cutee' button. The button should use the gold/maroon color scheme from tailwind.config.js (maroon background, gold hover state) and cursive/serif fonts (Dancing Script or Playfair Display). Include a fade-in animation on mount and a fade-out animation when the button is clicked. The component should accept an onEnter callback prop that fires when the button is clicked."
+          "operation": "modify",
+          "description": "Replace existing welcome overlay with full-screen landing screen featuring soft radial gradient background (white to #f4ecd8), italic subtitle 'A secret garden for Priya...' in muted grey, and gold-bordered 'ENTER' button with uppercase letter-spacing. Implement fade-out animation (~1.2s) on click before triggering onEnter callback."
         },
         {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Modify App.tsx to introduce a local state (useState) that tracks whether the welcome gate has been passed (e.g., showGate boolean, initially true). Conditionally render the WelcomeGate component when showGate is true. When the user clicks the 'Welcome Cutee' button (via the onEnter callback), set showGate to false and render the LoveLetterPage component. Ensure the transition is smooth by using CSS fade animations or a simple opacity transition."
+          "description": "Update state management to control transition from WelcomeGate to main garden content. Replace LoveLetterPage rendering with new GardenPage component. Remove FloatingHearts background layer as it's not part of the garden app design."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Build main content area with italic serif heading, gold divider, and subtitle",
+      "acceptanceCriteria": [
+        "Header displays italic serif h1 'For My Everything'",
+        "Gold 80px wide 1px divider renders below the heading",
+        "Subtitle text renders in small italic muted style"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/GardenPage.tsx",
+          "operation": "create",
+          "description": "Create main garden page component with max-width 600px centered container. Include italic serif heading 'For My Everything', gold horizontal divider line (80px wide, 1px), and subtitle 'Tap each bloom to reveal my heart...' in small muted italic text. This component will house the flower grid, message display, surprise button, and footer."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Implement 3×2 flower grid with 6 emoji flowers, desaturated initially, revealing color on click and hover interactions",
+      "acceptanceCriteria": [
+        "6 flowers render in a 3-column grid",
+        "Flowers start with grayscale(60%) sepia(50%) filter",
+        "Clicking a flower marks it as viewed: full color + scale(0.9)",
+        "Hovering scales to 1.1 and removes desaturation"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/FlowerGrid.tsx",
+          "operation": "create",
+          "description": "Create flower grid component displaying 6 flower emojis (🌹, 🌸, 🌷, 🌻, 🌼, 🌺) in a 3-column responsive grid. Implement state tracking for viewed flowers. Apply grayscale(60%) sepia(50%) filter to unviewed flowers. On click, mark flower as viewed (full color, scale(0.9)) and emit flower index to parent. On hover, scale to 1.1 and remove desaturation. Use CSS transitions for smooth animations."
         },
+        {
+          "path": "frontend/src/components/GardenPage.tsx",
+          "operation": "modify",
+          "description": "Integrate FlowerGrid component and manage viewed flower state at page level. Pass click handler to display corresponding message and track which flowers have been viewed for surprise button unlock logic."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Implement scrollable message display area with double gold borders showing flower-specific messages with fade-in animation",
+      "acceptanceCriteria": [
+        "Display area is 250px tall with vertical scroll and custom gold scrollbar",
+        "Clicking each flower renders its corresponding message with fade-in animation",
+        "All 6 message texts match the source exactly including emojis",
+        "Scroll resets to top when a new message is shown",
+        "Placeholder text 'Select a flower above' shows before any flower is clicked"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/MessageDisplay.tsx",
+          "operation": "create",
+          "description": "Create message display component with 250px height, vertical scroll, and custom gold scrollbar styling. Define all 6 messages exactly as specified: (0) long personal message about getting lost in her; (1) 'Every time I think of you, I realize how lucky I am...'; (2) 'I wanted to find a way to tell you that the small things you do...'; (3) 'There is a quiet strength in you that I admire...'; (4) 'If I could give you one thing, it would be the ability to see yourself through my eyes...'; (5) 'This isn't just a message; it's a promise...'. Implement fade-in animation when message changes, scroll reset on message change, and placeholder text 'Select a flower above' when no flower is selected. Style with double gold borders (top and bottom)."
+        },
+        {
+          "path": "frontend/src/components/GardenPage.tsx",
+          "operation": "modify",
+          "description": "Add MessageDisplay component below FlowerGrid. Pass selected flower index as prop to trigger message display updates."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Show hidden pulsing 'For You, Priya ❤️' button after all 6 flowers viewed, triggering heart burst and modal on click",
+      "acceptanceCriteria": [
+        "Surprise button is hidden until all 6 flowers are viewed",
+        "Button appears 800ms after the last flower is viewed",
+        "Button has a continuous pulse/glow animation",
+        "Clicking it triggers the heart burst and thank-you modal"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/SurpriseButton.tsx",
+          "operation": "create",
+          "description": "Create surprise button component with red/rose background, rounded pill shape, italic serif font 'For You, Priya ❤️', and continuous pulse/glow animation. Accept visibility prop and onClick handler. Component should fade in smoothly when becoming visible."
+        },
+        {
+          "path": "frontend/src/components/GardenPage.tsx",
+          "operation": "modify",
+          "description": "Add logic to show SurpriseButton only after all 6 flowers are viewed, with 800ms delay after the last flower is clicked. Wire button click to trigger heart burst animation and show thank-you modal."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Implement heart burst particle animation spawning 100 emoji hearts from center that fly outward and fade over 3 seconds",
+      "acceptanceCriteria": [
+        "100 heart particles are spawned on button click",
+        "Particles originate from center and spread randomly across the full viewport",
+        "Particles scale up and fade out over 3s then are removed",
+        "Alternates between ❤️ and 💖 emojis"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/HeartBurst.tsx",
+          "operation": "create",
+          "description": "Create heart burst animation component that spawns 100 heart particles (alternating ❤️ and 💖 emojis) from viewport center. Each particle flies outward in a random direction with random velocity, scales up, and fades out over 3 seconds. Use fixed positioning to cover full viewport. Automatically remove particles from DOM after animation completes. Component should be conditionally rendered and self-cleanup."
+        },
+        {
+          "path": "frontend/src/components/GardenPage.tsx",
+          "operation": "modify",
+          "description": "Add state to trigger HeartBurst component when surprise button is clicked. Ensure heart burst renders above all other content and triggers thank-you modal after starting."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Show centered thank-you modal with specific message text and gold Close button after surprise trigger",
+      "acceptanceCriteria": [
+        "Modal appears centered on screen above the heart particles",
+        "Thank-you message text matches exactly",
+        "Close button dismisses the modal",
+        "Modal has parchment background, gold border, rounded corners, and box shadow"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ThankYouModal.tsx",
+          "operation": "create",
+          "description": "Create centered modal overlay displaying exact thank-you message: '\"Thank you for spending your valuable time with me. My cutee, I will be forever grateful to you for everything. I hope I've been able to make you feel special and bring a smile to your face today.\"' followed by '— I admire you more than words can say. —'. Include gold '[ Close ]' button that dismisses modal. Style with parchment background (#fdfaf1), gold border (#c5a059), rounded corners, and drop shadow. Use fixed positioning with semi-transparent backdrop."
+        },
+        {
+          "path": "frontend/src/components/GardenPage.tsx",
+          "operation": "modify",
+          "description": "Add state to control ThankYouModal visibility, showing it after heart burst is triggered. Wire modal close button to hide modal."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Apply consistent parchment/gold/ink visual theme with Georgia serif font and 'ETERNALLY YOURS' footer",
+      "acceptanceCriteria": [
+        "CSS variables for parchment, ink, gold, and love colors are defined and used consistently",
+        "Georgia serif font is applied globally",
+        "Footer renders 'ETERNALLY YOURS' in small gold uppercase letter-spaced text at the bottom"
+      ],
+      "file_operations": [
         {
           "path": "frontend/src/index.css",
           "operation": "modify",
-          "description": "Add CSS classes or keyframe animations to support the welcome gate fade-in and fade-out transitions (e.g., .gate-fade-in, .gate-fade-out). Ensure these animations are consistent with the existing fadeIn animation already defined in this file. Keep all existing styles for LoveLetterPage intact."
+          "description": "Replace existing CSS variables with garden theme: --parchment: #fdfaf1, --ink: #3a3535, --gold: #c5a059, --love: #e74c3c. Set body background to var(--parchment) and text color to var(--ink). Apply Georgia serif font family globally. Remove existing romantic theme variables and animations not needed for garden app."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Update Tailwind config to extend theme with garden color palette (parchment, ink, gold, love). Update font families to prioritize Georgia serif. Remove Dancing Script and Playfair Display if no longer needed. Keep or add animations for pulse, fade, and scale transitions used in garden interactions."
+        },
+        {
+          "path": "frontend/src/components/GardenPage.tsx",
+          "operation": "modify",
+          "description": "Add footer element at bottom of page with text 'ETERNALLY YOURS' styled in small gold uppercase letter-spaced text. Ensure footer is visible after scrolling through all content."
+        },
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Update page title from 'A Message for Priya' to 'A Garden for Priya'. Verify Georgia font is available (it's a web-safe font) or add Google Fonts link if custom serif is preferred. Remove font imports for Dancing Script, Playfair Display if no longer used."
         }
       ]
     }

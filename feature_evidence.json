@@ -2,12 +2,11 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-add-a-full-screen-welcome-gate-that-appears-before-any-website-content-is-visible-the-gate-must-display-a-single-button-labeled-welcome-cutee-only-after-the-user-clicks-this-button-should-the-main-website-content-loveletterpage-become-visible-the-gate-should-fill-the-entire-viewport-with-a-visually-matching-dark-romantic-background-consistent-with-the-existing-theme-and-the-button-should-be-styled-to-match-the-gold-maroon-romantic-aesthetic-defined-in-the-project",
-      "featureTitle": "Add a full-screen welcome gate that appears before any website content is visible. The gate must display a single button labeled 'Welcome Cutee'. Only after the user clicks this button should the main website content (LoveLetterPage) become visible. The gate should fill the entire viewport with a visually matching dark/romantic background consistent with the existing theme, and the button should be styled to match the gold/maroon romantic aesthetic defined in the project.",
+      "featureId": "feature-create-a-full-screen-entrance-landing-screen-with-a-soft-radial-gradient-background-white-to-f4ecd8-an-italic-subtitle-a-secret-garden-for-priya-in-muted-grey-and-a-gold-bordered-enter-button-with-uppercase-letter-spacing-styling-clicking-the-button-fades-out-and-hides-the-landing-screen-then-fades-in-the-main-content",
+      "featureTitle": "Create a full-screen entrance/landing screen with a soft radial gradient background (white to #f4ecd8), an italic subtitle 'A secret garden for Priya...' in muted grey, and a gold-bordered 'ENTER' button with uppercase letter-spacing styling. Clicking the button fades out and hides the landing screen, then fades in the main content.",
       "files": [
         "frontend/src/App.tsx",
-        "frontend/src/components/WelcomeGate.tsx",
-        "frontend/src/index.css"
+        "frontend/src/components/WelcomeGate.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -19,6 +18,147 @@
       ],
       "testIds": [
         "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-the-main-content-area-max-width-600px-centered-with-an-italic-serif-heading-for-my-everything-a-gold-horizontal-divider-line-and-a-subtitle-tap-each-bloom-to-reveal-my-heart-in-small-muted-italic-text",
+      "featureTitle": "Build the main content area (max-width 600px, centered) with: an italic serif heading 'For My Everything', a gold horizontal divider line, and a subtitle 'Tap each bloom to reveal my heart...' in small muted italic text.",
+      "files": [
+        "frontend/src/components/GardenPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-3-2-flower-grid-containing-6-flower-emoji-items-each-flower-starts-with-a-desaturated-sepia-filter-when-clicked-it-reveals-its-message-and-gets-marked-as-viewed-full-color-slightly-scaled-down-hovering-scales-up-and-removes-desaturation",
+      "featureTitle": "Implement a 3×2 flower grid containing 6 flower emoji items (🌹, 🌸, 🌷, 🌻, 🌼, 🌺). Each flower starts with a desaturated/sepia filter. When clicked, it reveals its message and gets marked as 'viewed' (full color, slightly scaled down). Hovering scales up and removes desaturation.",
+      "files": [
+        "frontend/src/components/FlowerGrid.tsx",
+        "frontend/src/components/GardenPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-message-display-area-height-250px-scrollable-with-double-gold-top-and-bottom-borders-when-a-flower-is-clicked-display-the-corresponding-message-with-a-fade-in-animation-the-6-messages-must-match-exactly-0-the-long-personal-message-about-getting-lost-in-her-voice-as-medicine-phone-being-taken-1-every-time-i-think-of-you-i-realize-how-lucky-i-am-2-i-wanted-to-find-a-way-to-tell-you-that-the-small-things-you-do-3-there-is-a-quiet-strength-in-you-that-i-admire-4-if-i-could-give-you-one-thing-it-would-be-the-ability-to-see-yourself-through-my-eyes-5-this-isn-t-just-a-message-it-s-a-promise",
+      "featureTitle": "Implement a message display area (height 250px, scrollable) with double gold top and bottom borders. When a flower is clicked, display the corresponding message with a fade-in animation. The 6 messages must match exactly: (0) the long personal message about getting lost in her, voice as medicine, phone being taken; (1) 'Every time I think of you, I realize how lucky I am...'; (2) 'I wanted to find a way to tell you that the small things you do...'; (3) 'There is a quiet strength in you that I admire...'; (4) 'If I could give you one thing, it would be the ability to see yourself through my eyes...'; (5) 'This isn't just a message; it's a promise...'",
+      "files": [
+        "frontend/src/components/GardenPage.tsx",
+        "frontend/src/components/MessageDisplay.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-show-a-hidden-pulsing-for-you-priya-button-red-rose-background-rounded-pill-shape-italic-serif-font-pulse-animation-only-after-all-6-flowers-have-been-viewed-clicking-it-triggers-a-heart-burst-animation-and-reveals-a-final-thank-you-modal",
+      "featureTitle": "Show a hidden pulsing 'For You, Priya ❤️' button (red/rose background, rounded pill shape, italic serif font, pulse animation) only after all 6 flowers have been viewed. Clicking it triggers a heart burst animation and reveals a final thank-you modal.",
+      "files": [
+        "frontend/src/components/GardenPage.tsx",
+        "frontend/src/components/SurpriseButton.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-heart-burst-particle-animation-when-triggered-spawn-100-emoji-particles-from-the-center-of-the-screen-that-fly-outward-in-random-directions-across-the-full-viewport-fading-out-over-3-seconds-then-remove-themselves-from-the-dom",
+      "featureTitle": "Implement a heart burst particle animation: when triggered, spawn 100 ❤️/💖 emoji particles from the center of the screen that fly outward in random directions across the full viewport, fading out over 3 seconds, then remove themselves from the DOM.",
+      "files": [
+        "frontend/src/components/GardenPage.tsx",
+        "frontend/src/components/HeartBurst.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-show-a-centered-modal-overlay-after-triggering-the-surprise-displaying-the-thank-you-message-thank-you-for-spending-your-valuable-time-with-me-my-cutee-i-will-be-forever-grateful-to-you-for-everything-i-hope-i-ve-been-able-to-make-you-feel-special-and-bring-a-smile-to-your-face-today-followed-by-i-admire-you-more-than-words-can-say-and-a-gold-close-button-that-dismisses-the-modal-style-with-parchment-background-gold-border-rounded-corners-and-drop-shadow",
+      "featureTitle": "Show a centered modal overlay after triggering the surprise, displaying the thank-you message: '\"Thank you for spending your valuable time with me. My cutee, I will be forever grateful to you for everything. I hope I've been able to make you feel special and bring a smile to your face today.\"' followed by '— I admire you more than words can say. —' and a gold '[ Close ]' button that dismisses the modal. Style with parchment background, gold border, rounded corners, and drop shadow.",
+      "files": [
+        "frontend/src/components/GardenPage.tsx",
+        "frontend/src/components/ThankYouModal.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-a-consistent-parchment-gold-ink-visual-theme-across-the-entire-app-background-color-fdfaf1-parchment-primary-text-3a3535-ink-accent-c5a059-gold-highlight-e74c3c-love-red-use-georgia-serif-font-throughout-footer-reads-eternally-yours-in-small-gold-uppercase-letter-spaced-text",
+      "featureTitle": "Apply a consistent parchment/gold/ink visual theme across the entire app: background color #fdfaf1 (parchment), primary text #3a3535 (ink), accent #c5a059 (gold), highlight #e74c3c (love/red). Use Georgia serif font throughout. Footer reads 'ETERNALLY YOURS' in small gold uppercase letter-spaced text.",
+      "files": [
+        "frontend/index.html",
+        "frontend/src/components/GardenPage.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
       ],
       "confidence": "high"
     }

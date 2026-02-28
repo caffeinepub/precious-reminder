@@ -2,58 +2,61 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Google Fonts are loaded via index.html ── */
-
 @layer base {
     :root {
+        --parchment: #fdfaf1;
+        --ink: #3a3535;
+        --gold: #c5a059;
+        --love: #e74c3c;
+
         --radius: 0.5rem;
 
-        --background: 0.10 0.00 0;
-        --foreground: 0.75 0.10 82;
-        --card: 0.14 0.02 340;
-        --card-foreground: 0.75 0.10 82;
-        --popover: 0.14 0.02 340;
-        --popover-foreground: 0.75 0.10 82;
-        --primary: 0.75 0.10 82;
-        --primary-foreground: 0.10 0.00 0;
-        --secondary: 0.16 0.02 340;
-        --secondary-foreground: 0.75 0.10 82;
-        --muted: 0.16 0.02 340;
-        --muted-foreground: 0.52 0.05 75;
-        --accent: 0.75 0.10 82;
-        --accent-foreground: 0.10 0.00 0;
-        --destructive: 0.52 0.18 25;
-        --destructive-foreground: 0.99 0.01 20;
-        --border: 0.75 0.10 82;
-        --input: 0.18 0.02 340;
-        --ring: 0.75 0.10 82;
-        --chart-1: 0.75 0.10 82;
-        --chart-2: 0.62 0.08 72;
-        --chart-3: 0.52 0.07 62;
-        --chart-4: 0.68 0.09 78;
-        --chart-5: 0.60 0.08 68;
+        --background: oklch(0.98 0.02 85);
+        --foreground: oklch(0.22 0.02 30);
+        --card: oklch(1 0 0);
+        --card-foreground: oklch(0.22 0.02 30);
+        --popover: oklch(1 0 0);
+        --popover-foreground: oklch(0.22 0.02 30);
+        --primary: oklch(0.68 0.09 70);
+        --primary-foreground: oklch(1 0 0);
+        --secondary: oklch(0.94 0.02 80);
+        --secondary-foreground: oklch(0.22 0.02 30);
+        --muted: oklch(0.94 0.02 80);
+        --muted-foreground: oklch(0.55 0.04 50);
+        --accent: oklch(0.55 0.14 25);
+        --accent-foreground: oklch(1 0 0);
+        --destructive: oklch(0.52 0.20 25);
+        --destructive-foreground: oklch(0.99 0.01 20);
+        --border: oklch(0.88 0.04 75);
+        --input: oklch(0.88 0.04 75);
+        --ring: oklch(0.68 0.09 70);
+        --chart-1: oklch(0.68 0.09 70);
+        --chart-2: oklch(0.55 0.14 25);
+        --chart-3: oklch(0.75 0.07 90);
+        --chart-4: oklch(0.60 0.10 55);
+        --chart-5: oklch(0.70 0.08 80);
     }
 
     .dark {
-        --background: 0.10 0.00 0;
-        --foreground: 0.75 0.10 82;
-        --card: 0.14 0.02 340;
-        --card-foreground: 0.75 0.10 82;
-        --popover: 0.14 0.02 340;
-        --popover-foreground: 0.75 0.10 82;
-        --primary: 0.75 0.10 82;
-        --primary-foreground: 0.10 0.00 0;
-        --secondary: 0.16 0.02 340;
-        --secondary-foreground: 0.75 0.10 82;
-        --muted: 0.16 0.02 340;
-        --muted-foreground: 0.52 0.05 75;
-        --accent: 0.75 0.10 82;
-        --accent-foreground: 0.10 0.00 0;
-        --destructive: 0.52 0.18 25;
-        --destructive-foreground: 0.99 0.01 20;
-        --border: 0.75 0.10 82;
-        --input: 0.18 0.02 340;
-        --ring: 0.75 0.10 82;
+        --background: oklch(0.15 0.02 30);
+        --foreground: oklch(0.92 0.03 75);
+        --card: oklch(0.18 0.02 30);
+        --card-foreground: oklch(0.92 0.03 75);
+        --popover: oklch(0.18 0.02 30);
+        --popover-foreground: oklch(0.92 0.03 75);
+        --primary: oklch(0.68 0.09 70);
+        --primary-foreground: oklch(0.15 0.02 30);
+        --secondary: oklch(0.22 0.02 30);
+        --secondary-foreground: oklch(0.92 0.03 75);
+        --muted: oklch(0.22 0.02 30);
+        --muted-foreground: oklch(0.62 0.04 60);
+        --accent: oklch(0.55 0.14 25);
+        --accent-foreground: oklch(0.92 0.03 75);
+        --destructive: oklch(0.52 0.20 25);
+        --destructive-foreground: oklch(0.99 0.01 20);
+        --border: oklch(0.28 0.03 40);
+        --input: oklch(0.28 0.03 40);
+        --ring: oklch(0.68 0.09 70);
     }
 
     * {
@@ -68,24 +71,63 @@
     }
 
     body {
-        background-color: #1a1a1a;
-        font-family: 'EB Garamond', Georgia, serif;
+        background-color: var(--parchment);
+        font-family: 'Georgia', serif;
+        color: var(--ink);
         overflow-x: hidden;
     }
 }
 
-/* ── Keyframe animations ── */
-@keyframes float {
-    0%   { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-    50%  { opacity: 0.5; }
-    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+/* ── Custom scrollbar for message display ── */
+.garden-scroll::-webkit-scrollbar {
+    width: 5px;
+}
+.garden-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+.garden-scroll::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 10px;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.95); }
-    to   { opacity: 1; transform: scale(1); }
+/* ── Fade-in text animation ── */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
+.fade-in-text {
+    animation: fadeInUp 0.8s forwards;
+}
+
+/* ── Heart burst particle animation ── */
+@keyframes heartFly {
+    0%   { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+    100% { transform: translate(var(--hx), var(--hy)) scale(1.8); opacity: 0; }
+}
+
+.heart-particle {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    pointer-events: none;
+    z-index: 999;
+    animation: heartFly 3s ease-out forwards;
+    font-size: 1.5rem;
+}
+
+/* ── Pulse animation for surprise button ── */
+@keyframes surprisePulse {
+    0%   { transform: scale(1); box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.4); }
+    70%  { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(231, 76, 60, 0); }
+    100% { transform: scale(1); }
+}
+
+.surprise-pulse {
+    animation: surprisePulse 2s infinite;
+}
+
+/* ── Shadcn accordion animations ── */
 @keyframes accordion-down {
     from { height: 0; }
     to   { height: var(--radix-accordion-content-height); }
@@ -96,377 +138,6 @@
     to   { height: 0; }
 }
 
-/* ── Welcome Gate animations ── */
-@keyframes gateFadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-@keyframes gateFadeOut {
-    from { opacity: 1; }
-    to   { opacity: 0; }
-}
-
-@keyframes gateSlideUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes gatePulse {
-    0%, 100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.4), 0 0 40px rgba(128, 0, 0, 0.3); }
-    50%       { box-shadow: 0 0 35px rgba(212, 175, 55, 0.7), 0 0 60px rgba(128, 0, 0, 0.5); }
-}
-
-@keyframes gateHeartFloat {
-    0%   { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-    10%  { opacity: 0.4; }
-    90%  { opacity: 0.3; }
-    100% { transform: translateY(-15vh) rotate(20deg); opacity: 0; }
-}
-
-@keyframes gateOrnamentGlow {
-    0%, 100% { opacity: 0.5; letter-spacing: 6px; }
-    50%       { opacity: 1; letter-spacing: 10px; }
-}
-
-/* ── Welcome Gate overlay ── */
-.gate-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background:
-        radial-gradient(ellipse at 50% 40%, rgba(128, 0, 0, 0.18) 0%, transparent 65%),
-        radial-gradient(ellipse at 20% 80%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
-        #0f0a0a;
-    overflow: hidden;
-}
-
-.gate-fade-in {
-    animation: gateFadeIn 0.8s ease-out forwards;
-}
-
-.gate-fade-out {
-    animation: gateFadeOut 0.7s ease-in forwards;
-    pointer-events: none;
-}
-
-/* ── Floating heart particles ── */
-.gate-hearts {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    overflow: hidden;
-}
-
-.gate-heart-particle {
-    position: absolute;
-    bottom: -20px;
-    animation: gateHeartFloat linear infinite;
-    opacity: 0;
-}
-
-/* ── Center content card ── */
-.gate-center {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-    padding: 56px 64px;
-    background: rgba(26, 10, 10, 0.75);
-    border: 1px solid rgba(212, 175, 55, 0.35);
-    border-radius: 4px;
-    box-shadow:
-        0 0 60px rgba(128, 0, 0, 0.25),
-        0 0 120px rgba(128, 0, 0, 0.1),
-        inset 0 0 40px rgba(212, 175, 55, 0.04);
-    backdrop-filter: blur(8px);
-    animation: gateSlideUp 1s ease-out 0.3s both;
-    max-width: 520px;
-    width: 90vw;
-    text-align: center;
-}
-
-/* ── Ornament ── */
-.gate-ornament {
-    font-family: 'Playfair Display', serif;
-    color: #d4af37;
-    font-size: 0.85rem;
-    letter-spacing: 8px;
-    animation: gateOrnamentGlow 3s ease-in-out infinite;
-    margin-bottom: 24px;
-}
-
-.gate-ornament-bottom {
-    margin-bottom: 0;
-    margin-top: 28px;
-}
-
-/* ── Title ── */
-.gate-title {
-    font-family: 'Dancing Script', cursive;
-    font-size: 2.6rem;
-    color: #f5e6c8;
-    margin: 0 0 14px 0;
-    line-height: 1.2;
-    text-shadow: 0 2px 12px rgba(212, 175, 55, 0.3);
-}
-
-/* ── Subtitle ── */
-.gate-subtitle {
-    font-family: 'EB Garamond', Georgia, serif;
-    font-size: 1.05rem;
-    color: rgba(212, 175, 55, 0.65);
-    margin: 0 0 28px 0;
-    font-style: italic;
-    letter-spacing: 0.3px;
-    line-height: 1.6;
-}
-
-/* ── Divider ── */
-.gate-divider {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    width: 100%;
-    margin-bottom: 36px;
-}
-
-.gate-divider-line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.5), transparent);
-}
-
-.gate-divider-icon {
-    color: #800000;
-    font-size: 1.1rem;
-    line-height: 1;
-}
-
-/* ── Welcome button ── */
-.gate-button {
-    font-family: 'Dancing Script', cursive;
-    font-size: 1.65rem;
-    font-weight: 700;
-    color: #f5e6c8;
-    background: radial-gradient(ellipse at 50% 30%, #a52a2a 0%, #800000 55%, #5a0000 100%);
-    border: 1.5px solid #d4af37;
-    border-radius: 2px;
-    padding: 16px 52px;
-    cursor: pointer;
-    letter-spacing: 1px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-    animation: gatePulse 2.5s ease-in-out infinite;
-    position: relative;
-    overflow: hidden;
-}
-
-.gate-button::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, transparent 60%);
-    pointer-events: none;
-}
-
-.gate-button:hover:not(:disabled) {
-    transform: scale(1.06);
-    background: radial-gradient(ellipse at 50% 30%, #c0392b 0%, #9b0000 55%, #6b0000 100%);
-    box-shadow: 0 0 30px rgba(212, 175, 55, 0.6), 0 0 60px rgba(128, 0, 0, 0.5);
-    animation: none;
-}
-
-.gate-button:active:not(:disabled) {
-    transform: scale(0.98);
-}
-
-.gate-button:disabled {
-    opacity: 0.7;
-    cursor: default;
-}
-
-/* ── Page layout ── */
-.love-letter-bg {
-    margin: 0;
-    padding: 0;
-    background-color: #1a1a1a;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    font-family: 'EB Garamond', Georgia, serif;
-    overflow-x: hidden;
-    position: relative;
-    padding-bottom: 60px;
-}
-
-/* ── Floating background emojis ── */
-.bg-emoji {
-    position: fixed;
-    color: rgba(128, 0, 0, 0.15);
-    font-size: 20px;
-    z-index: 0;
-    animation: float 10s linear infinite;
-    pointer-events: none;
-    bottom: 0;
-}
-
-/* ── Letter container ── */
-.letter-container {
-    width: 85%;
-    max-width: 650px;
-    background: #fdfcf0;
-    padding: 40px 50px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-    border: 2px solid #d4af37;
-    position: relative;
-    animation: fadeIn 2.5s ease-out;
-    margin: 40px 20px 20px;
-    z-index: 1;
-}
-
-/* ── Parchment texture overlay ── */
-.parchment-overlay {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('https://www.transparenttextures.com/patterns/cream-paper.png');
-    opacity: 0.4;
-    pointer-events: none;
-    z-index: 0;
-}
-
-/* ── Letter header ── */
-.letter-header {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    font-family: 'Dancing Script', cursive;
-    font-size: 2.8rem;
-    color: #800000;
-    margin-bottom: 25px;
-    border-bottom: 1px double #d4af37;
-    padding-bottom: 10px;
-    line-height: 1.3;
-}
-
-/* ── Letter body ── */
-.letter-body {
-    position: relative;
-    z-index: 1;
-    line-height: 1.9;
-    font-size: 1.2rem;
-    color: #2c2c2c;
-    text-align: justify;
-    font-family: 'EB Garamond', Georgia, serif;
-}
-
-.letter-body p {
-    margin-bottom: 1.2em;
-}
-
-.letter-body p:last-child {
-    margin-bottom: 0;
-}
-
-/* ── Highlighted phrases ── */
-.highlight {
-    font-style: italic;
-    color: #800000;
-    font-weight: bold;
-    text-decoration: underline wavy #d4af37;
-    text-decoration-thickness: 1.5px;
-    text-underline-offset: 3px;
-}
-
-/* ── Footer signature ── */
-.letter-footer {
-    position: relative;
-    z-index: 1;
-    margin-top: 45px;
-    text-align: right;
-    font-family: 'Dancing Script', cursive;
-    font-size: 2rem;
-    color: #800000;
-}
-
-/* ── Wax seal ── */
-.wax-seal {
-    position: relative;
-    z-index: 1;
-    margin: 30px auto 0;
-    width: 70px;
-    height: 70px;
-    background: radial-gradient(circle, #a52a2a, #800000);
-    border-radius: 50%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #d4af37;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    border: 2px solid #600000;
-    font-weight: 400;
-}
-
-/* ── Attribution footer ── */
-.attribution-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    padding: 10px 16px;
-    font-family: 'EB Garamond', Georgia, serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.5px;
-    color: rgba(212, 175, 55, 0.45);
-    z-index: 10;
-    background: linear-gradient(to top, rgba(26,26,26,0.9) 0%, transparent 100%);
-}
-
-/* ── Responsive: mobile ── */
-@media (max-width: 480px) {
-    .letter-container {
-        padding: 25px;
-        width: 90%;
-    }
-
-    .letter-header {
-        font-size: 2.2rem;
-    }
-
-    .letter-body {
-        font-size: 1.1rem;
-    }
-
-    .letter-footer {
-        font-size: 1.7rem;
-    }
-
-    .gate-center {
-        padding: 40px 28px;
-    }
-
-    .gate-title {
-        font-size: 2rem;
-    }
-
-    .gate-button {
-        font-size: 1.4rem;
-        padding: 14px 36px;
-    }
-}
-
-/* ── Shadcn accordion animations ── */
 .animate-accordion-down {
     animation: accordion-down 0.2s ease-out;
 }

@@ -1,15 +1,16 @@
 import { useState } from 'react';
-import LoveLetterPage from './components/LoveLetterPage';
 import WelcomeGate from './components/WelcomeGate';
+import GardenPage from './components/GardenPage';
 
 function App() {
   const [entered, setEntered] = useState(false);
 
-  if (!entered) {
-    return <WelcomeGate onEnter={() => setEntered(true)} />;
-  }
-
-  return <LoveLetterPage />;
+  return (
+    <>
+      {!entered && <WelcomeGate onEnter={() => setEntered(true)} />}
+      {entered && <GardenPage />}
+    </>
+  );
 }
 
 export default App;

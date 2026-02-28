@@ -16,71 +16,59 @@ export default {
         },
         extend: {
             colors: {
-                border: 'oklch(var(--border))',
-                input: 'oklch(var(--input))',
-                ring: 'oklch(var(--ring) / <alpha-value>)',
+                parchment: 'var(--parchment)',
+                ink: 'var(--ink)',
+                gold: 'var(--gold)',
+                love: 'var(--love)',
                 background: 'oklch(var(--background))',
                 foreground: 'oklch(var(--foreground))',
-                primary: {
-                    DEFAULT: 'oklch(var(--primary) / <alpha-value>)',
-                    foreground: 'oklch(var(--primary-foreground))'
-                },
-                secondary: {
-                    DEFAULT: 'oklch(var(--secondary) / <alpha-value>)',
-                    foreground: 'oklch(var(--secondary-foreground))'
-                },
-                destructive: {
-                    DEFAULT: 'oklch(var(--destructive) / <alpha-value>)',
-                    foreground: 'oklch(var(--destructive-foreground))'
-                },
-                muted: {
-                    DEFAULT: 'oklch(var(--muted) / <alpha-value>)',
-                    foreground: 'oklch(var(--muted-foreground) / <alpha-value>)'
-                },
-                accent: {
-                    DEFAULT: 'oklch(var(--accent) / <alpha-value>)',
-                    foreground: 'oklch(var(--accent-foreground))'
+                card: {
+                    DEFAULT: 'oklch(var(--card))',
+                    foreground: 'oklch(var(--card-foreground))'
                 },
                 popover: {
                     DEFAULT: 'oklch(var(--popover))',
                     foreground: 'oklch(var(--popover-foreground))'
                 },
-                card: {
-                    DEFAULT: 'oklch(var(--card))',
-                    foreground: 'oklch(var(--card-foreground))'
+                primary: {
+                    DEFAULT: 'oklch(var(--primary))',
+                    foreground: 'oklch(var(--primary-foreground))'
                 },
+                secondary: {
+                    DEFAULT: 'oklch(var(--secondary))',
+                    foreground: 'oklch(var(--secondary-foreground))'
+                },
+                muted: {
+                    DEFAULT: 'oklch(var(--muted))',
+                    foreground: 'oklch(var(--muted-foreground))'
+                },
+                accent: {
+                    DEFAULT: 'oklch(var(--accent))',
+                    foreground: 'oklch(var(--accent-foreground))'
+                },
+                destructive: {
+                    DEFAULT: 'oklch(var(--destructive))',
+                    foreground: 'oklch(var(--destructive-foreground))'
+                },
+                border: 'oklch(var(--border))',
+                input: 'oklch(var(--input))',
+                ring: 'oklch(var(--ring))',
                 chart: {
-                    1: 'oklch(var(--chart-1))',
-                    2: 'oklch(var(--chart-2))',
-                    3: 'oklch(var(--chart-3))',
-                    4: 'oklch(var(--chart-4))',
-                    5: 'oklch(var(--chart-5))'
-                },
-                maroon: '#800000',
-                gold: {
-                    DEFAULT: '#D4AF37',
-                    dark: '#996515',
-                    light: '#F0D060'
-                },
-                parchment: '#fdfcf0',
+                    '1': 'oklch(var(--chart-1))',
+                    '2': 'oklch(var(--chart-2))',
+                    '3': 'oklch(var(--chart-3))',
+                    '4': 'oklch(var(--chart-4))',
+                    '5': 'oklch(var(--chart-5))'
+                }
             },
             fontFamily: {
-                sans: ['EB Garamond', 'Georgia', 'serif'],
-                garamond: ['EB Garamond', 'Georgia', 'serif'],
-                dancing: ['Dancing Script', 'cursive'],
-                playfair: ['Playfair Display', 'Georgia', 'serif'],
+                serif: ['Georgia', 'serif'],
+                sans: ['Georgia', 'serif'],
             },
             borderRadius: {
                 lg: 'var(--radius)',
                 md: 'calc(var(--radius) - 2px)',
-                sm: 'calc(var(--radius) - 4px)',
-                full: '9999px'
-            },
-            boxShadow: {
-                xs: '0 1px 2px 0 rgba(0,0,0,0.05)',
-                gold: '0 0 20px rgba(212, 175, 55, 0.4), 0 0 40px rgba(212, 175, 55, 0.2)',
-                letter: '0 20px 50px rgba(0,0,0,0.6)',
-                seal: '0 4px 8px rgba(0,0,0,0.4)',
+                sm: 'calc(var(--radius) - 4px)'
             },
             keyframes: {
                 'accordion-down': {
@@ -91,23 +79,12 @@ export default {
                     from: { height: 'var(--radix-accordion-content-height)' },
                     to: { height: '0' }
                 },
-                float: {
-                    '0%':   { transform: 'translateY(100vh) rotate(0deg)', opacity: '0' },
-                    '50%':  { opacity: '0.5' },
-                    '100%': { transform: 'translateY(-10vh) rotate(360deg)', opacity: '0' }
-                },
-                fadeIn: {
-                    from: { opacity: '0', transform: 'scale(0.95)' },
-                    to:   { opacity: '1', transform: 'scale(1)' }
-                }
             },
             animation: {
                 'accordion-down': 'accordion-down 0.2s ease-out',
                 'accordion-up': 'accordion-up 0.2s ease-out',
-                float: 'float 10s linear infinite',
-                'fade-in': 'fadeIn 2.5s ease-out',
             }
         }
     },
-    plugins: [typography, containerQueries, animate]
+    plugins: [typography, containerQueries, animate],
 };

@@ -1,40 +1,184 @@
 {
   "kind": "build_request",
-  "title": "Add 'Welcome Cutee' gate button before website content",
-  "projectName": "For My Cutee",
+  "title": "Rebuild 'A Garden for Priya' interactive flower garden app",
+  "projectName": "A Garden for Priya",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Add a full-screen welcome gate that appears before any website content is visible. The gate must display a single button labeled 'Welcome Cutee'. Only after the user clicks this button should the main website content (LoveLetterPage) become visible. The gate should fill the entire viewport with a visually matching dark/romantic background consistent with the existing theme, and the button should be styled to match the gold/maroon romantic aesthetic defined in the project.",
+      "text": "Create a full-screen entrance/landing screen with a soft radial gradient background (white to #f4ecd8), an italic subtitle 'A secret garden for Priya...' in muted grey, and a gold-bordered 'ENTER' button with uppercase letter-spacing styling. Clicking the button fades out and hides the landing screen, then fades in the main content.",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-4"
         ],
         "quotes": [
-          "add a button that must to be clicked and then only the website will open and she would be able to visit the website and the button must say ' Welcome Cutee'"
+          "A secret garden for Priya...",
+          "Enter"
         ]
       },
       "acceptanceCriteria": [
-        "On initial page load, only the gate screen is shown — the LoveLetterPage content is hidden.",
-        "The gate screen covers the full viewport.",
-        "A single button with the label 'Welcome Cutee' is centered on the gate screen.",
-        "Clicking the 'Welcome Cutee' button hides the gate and reveals the main LoveLetterPage content.",
-        "The gate's visual style (background, typography, button colors) is consistent with the existing dark romantic theme (dark background, gold/maroon accents, serif/cursive fonts).",
-        "The transition from gate to main content is smooth (e.g., fade or gentle animation)."
+        "Landing screen is displayed full-screen on initial load",
+        "Clicking ENTER fades out the landing page over ~1.2s then reveals main content",
+        "Button has gold border, uppercase letter-spacing, and hover effect that darkens background"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Build the main content area (max-width 600px, centered) with: an italic serif heading 'For My Everything', a gold horizontal divider line, and a subtitle 'Tap each bloom to reveal my heart...' in small muted italic text.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "For My Everything",
+          "Tap each bloom to reveal my heart..."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Header displays italic serif h1 'For My Everything'",
+        "Gold 80px wide 1px divider renders below the heading",
+        "Subtitle text renders in small italic muted style"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Implement a 3×2 flower grid containing 6 flower emoji items (🌹, 🌸, 🌷, 🌻, 🌼, 🌺). Each flower starts with a desaturated/sepia filter. When clicked, it reveals its message and gets marked as 'viewed' (full color, slightly scaled down). Hovering scales up and removes desaturation.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "flower-garden",
+          "flower-item",
+          "flower-item.viewed"
+        ]
+      },
+      "acceptanceCriteria": [
+        "6 flowers render in a 3-column grid",
+        "Flowers start with grayscale(60%) sepia(50%) filter",
+        "Clicking a flower marks it as viewed: full color + scale(0.9)",
+        "Hovering scales to 1.1 and removes desaturation"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Implement a message display area (height 250px, scrollable) with double gold top and bottom borders. When a flower is clicked, display the corresponding message with a fade-in animation. The 6 messages must match exactly: (0) the long personal message about getting lost in her, voice as medicine, phone being taken; (1) 'Every time I think of you, I realize how lucky I am...'; (2) 'I wanted to find a way to tell you that the small things you do...'; (3) 'There is a quiet strength in you that I admire...'; (4) 'If I could give you one thing, it would be the ability to see yourself through my eyes...'; (5) 'This isn't just a message; it's a promise...'",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "display-area",
+          "messages",
+          "fade-in-text"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Display area is 250px tall with vertical scroll and custom gold scrollbar",
+        "Clicking each flower renders its corresponding message with fade-in animation",
+        "All 6 message texts match the source exactly including emojis",
+        "Scroll resets to top when a new message is shown",
+        "Placeholder text 'Select a flower above' shows before any flower is clicked"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Show a hidden pulsing 'For You, Priya ❤️' button (red/rose background, rounded pill shape, italic serif font, pulse animation) only after all 6 flowers have been viewed. Clicking it triggers a heart burst animation and reveals a final thank-you modal.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "surprise-btn",
+          "burstHearts",
+          "viewed.size === 6"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Surprise button is hidden until all 6 flowers are viewed",
+        "Button appears 800ms after the last flower is viewed",
+        "Button has a continuous pulse/glow animation",
+        "Clicking it triggers the heart burst and thank-you modal"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Implement a heart burst particle animation: when triggered, spawn 100 ❤️/💖 emoji particles from the center of the screen that fly outward in random directions across the full viewport, fading out over 3 seconds, then remove themselves from the DOM.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "burstHearts",
+          "for (let i = 0; i < 100; i++)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "100 heart particles are spawned on button click",
+        "Particles originate from center and spread randomly across the full viewport",
+        "Particles scale up and fade out over 3s then are removed",
+        "Alternates between ❤️ and 💖 emojis"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Show a centered modal overlay after triggering the surprise, displaying the thank-you message: '\"Thank you for spending your valuable time with me. My cutee, I will be forever grateful to you for everything. I hope I've been able to make you feel special and bring a smile to your face today.\"' followed by '— I admire you more than words can say. —' and a gold '[ Close ]' button that dismisses the modal. Style with parchment background, gold border, rounded corners, and drop shadow.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "thanks-msg",
+          "Thank you for spending your valuable time with me"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Modal appears centered on screen above the heart particles",
+        "Thank-you message text matches exactly",
+        "Close button dismisses the modal",
+        "Modal has parchment background, gold border, rounded corners, and box shadow"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Apply a consistent parchment/gold/ink visual theme across the entire app: background color #fdfaf1 (parchment), primary text #3a3535 (ink), accent #c5a059 (gold), highlight #e74c3c (love/red). Use Georgia serif font throughout. Footer reads 'ETERNALLY YOURS' in small gold uppercase letter-spaced text.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "--parchment: #fdfaf1",
+          "--ink: #3a3535",
+          "--gold: #c5a059",
+          "--love: #e74c3c",
+          "ETERNALLY YOURS"
+        ]
+      },
+      "acceptanceCriteria": [
+        "CSS variables for parchment, ink, gold, and love colors are defined and used consistently",
+        "Georgia serif font is applied globally",
+        "Footer renders 'ETERNALLY YOURS' in small gold uppercase letter-spaced text at the bottom"
       ]
     }
   ],
   "constraints": [
-    "Do not modify any files under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or frontend/src/components/ui.",
-    "The gate must be implemented as a frontend-only state change — no backend involvement.",
-    "Existing LoveLetterPage component and its styles must remain unchanged."
+    "All 6 message texts must be preserved exactly as provided in the HTML source, including emojis and line breaks",
+    "The thank-you modal text must match the source exactly",
+    "No backend logic is needed — all state is client-side only"
   ],
   "nonGoals": [
-    "No backend persistence of gate state.",
-    "No authentication or login required to pass the gate.",
-    "No changes to the love letter content or styling."
+    "No backend data persistence or API calls",
+    "No user authentication or Internet Identity integration",
+    "No music or audio features",
+    "No additional pages beyond the landing screen and main garden"
   ],
   "imageRequirements": {
     "required": [],
