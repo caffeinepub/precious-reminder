@@ -1,85 +1,59 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "A romantic single-page web app called 'A Garden for Priya' — an interactive flower garden where each flower reveals a personal love message. Features a landing entrance screen, 6 clickable flower emojis that reveal messages when tapped, a surprise button unlocked after viewing all flowers, heart burst particle animation, and a final thank-you modal. Built with vanilla HTML/CSS/JS in an elegant parchment/gold aesthetic.",
+  "summary": "A romantic letter web app styled as an animated parchment scroll. Features an entry screen with an 'Open My Heart' button, animated scroll unrolling effect, parchment-textured letter with love message and exam encouragement note for Priya, and a close/roll-back button. Uses Dancing Script, Cinzel, and Great Vibes Google Fonts with a dark background theme.",
   "architectural_notes": [
-    "Single-file vanilla HTML/CSS/JS app — no frameworks or dependencies",
-    "Landing page fades out on Enter button click, main content fades in",
-    "6 flower emojis in a 3-column grid; each reveals a unique message in a scrollable display area",
-    "Surprise button appears only after all 6 flowers have been viewed; triggers heart burst animation",
-    "Heart burst uses 100 dynamically created DOM elements with CSS custom property --x/--y for spread direction"
+    "Single HTML file app with embedded CSS and JS — no external dependencies except Google Fonts and a transparent texture image",
+    "Two-screen flow: entry screen with button → animated parchment scroll reveal → letter content with close button",
+    "Parchment scroll animation uses CSS height transition (0 to 75vh) with content fade-in delayed by 1.2s"
   ],
   "known_issues": [],
   "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-create-a-full-screen-entrance-landing-screen-with-a-soft-radial-gradient-background-white-to-f4ecd8-an-italic-subtitle-a-secret-garden-for-priya-in-muted-grey-and-a-gold-bordered-enter-button-with-uppercase-letter-spacing-styling-clicking-the-button-fades-out-and-hides-the-landing-screen-then-fades-in-the-main-content",
-      "title": "Create a full-screen entrance/landing screen with a soft radial gradient background (white to #f4ecd8), an italic subtitle 'A secret garden for Priya...' in muted grey, and a gold-bordered 'ENTER' button with uppercase letter-spacing styling. Clicking the button fades out and hides the landing screen, then fades in the main content.",
+      "id": "feature-rebuild-the-frontend-to-match-the-provided-html-design-exactly-a-dark-121212-background-entry-screen-with-a-parchment-styled-open-my-heart-button-cinzel-font-gold-border-rounded-pill-shape-with-hover-scale-rotate-effect-clicking-it-hides-the-entry-screen-and-reveals-the-scroll",
+      "title": "Rebuild the frontend to match the provided HTML design exactly: a dark (#121212) background entry screen with a parchment-styled 'Open My Heart ❤️' button (Cinzel font, gold border, rounded pill shape with hover scale/rotate effect). Clicking it hides the entry screen and reveals the scroll.",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-build-the-main-content-area-max-width-600px-centered-with-an-italic-serif-heading-for-my-everything-a-gold-horizontal-divider-line-and-a-subtitle-tap-each-bloom-to-reveal-my-heart-in-small-muted-italic-text",
-      "title": "Build the main content area (max-width 600px, centered) with: an italic serif heading 'For My Everything', a gold horizontal divider line, and a subtitle 'Tap each bloom to reveal my heart...' in small muted italic text.",
+      "id": "feature-implement-the-animated-parchment-scroll-ui-two-wooden-style-brown-roll-handles-gradient-rounded-with-candle-decorations-at-each-end-and-a-parchment-body-between-them-that-animates-from-height-0-to-75vh-over-1-8s-with-a-cubic-bezier-easing-when-opened-the-parchment-uses-background-color-f4e4bc-with-a-paper-fibers-texture-overlay-gold-left-right-borders-and-inner-shadow",
+      "title": "Implement the animated parchment scroll UI: two wooden-style brown roll handles (gradient, rounded, with 🕯️ candle decorations at each end), and a parchment body between them that animates from height 0 to 75vh over 1.8s with a cubic-bezier easing when opened. The parchment uses background color #f4e4bc with a paper-fibers texture overlay, gold left/right borders, and inner shadow.",
       "reqIds": [
         "REQ-2"
       ],
       "version": 1
     },
     {
-      "id": "feature-implement-a-3-2-flower-grid-containing-6-flower-emoji-items-each-flower-starts-with-a-desaturated-sepia-filter-when-clicked-it-reveals-its-message-and-gets-marked-as-viewed-full-color-slightly-scaled-down-hovering-scales-up-and-removes-desaturation",
-      "title": "Implement a 3×2 flower grid containing 6 flower emoji items (🌹, 🌸, 🌷, 🌻, 🌼, 🌺). Each flower starts with a desaturated/sepia filter. When clicked, it reveals its message and gets marked as 'viewed' (full color, slightly scaled down). Hovering scales up and removes desaturation.",
+      "id": "feature-render-the-letter-content-inside-the-parchment-scroll-the-content-fades-in-opacity-0-to-1-after-a-1-2s-delay-once-the-scroll-is-open-content-includes-great-vibes-font-h1-title-to-my-most-special-person-in-red-d42424-six-body-paragraphs-in-dancing-script-at-1-4rem-a-gold-horizontal-rule-separator-a-highlighted-exam-note-section-with-class-highlight-in-bold-red-b52b2b-at-1-5rem-and-a-roll-back-close-button-that-reverses-the-scroll-animation-and-returns-to-the-entry-screen",
+      "title": "Render the letter content inside the parchment scroll. The content fades in (opacity 0 to 1) after a 1.2s delay once the scroll is open. Content includes: Great Vibes font h1 title 'To My Most Special Person 🌹' in red (#d42424); six body paragraphs in Dancing Script at 1.4rem; a gold horizontal rule separator; a highlighted exam note section with class 'highlight' in bold red (#b52b2b) at 1.5rem; and a 'Roll Back & Close 📜' button that reverses the scroll animation and returns to the entry screen.",
       "reqIds": [
         "REQ-3"
       ],
       "version": 1
     },
     {
-      "id": "feature-implement-a-message-display-area-height-250px-scrollable-with-double-gold-top-and-bottom-borders-when-a-flower-is-clicked-display-the-corresponding-message-with-a-fade-in-animation-the-6-messages-must-match-exactly-0-the-long-personal-message-about-getting-lost-in-her-voice-as-medicine-phone-being-taken-1-every-time-i-think-of-you-i-realize-how-lucky-i-am-2-i-wanted-to-find-a-way-to-tell-you-that-the-small-things-you-do-3-there-is-a-quiet-strength-in-you-that-i-admire-4-if-i-could-give-you-one-thing-it-would-be-the-ability-to-see-yourself-through-my-eyes-5-this-isn-t-just-a-message-it-s-a-promise",
-      "title": "Implement a message display area (height 250px, scrollable) with double gold top and bottom borders. When a flower is clicked, display the corresponding message with a fade-in animation. The 6 messages must match exactly: (0) the long personal message about getting lost in her, voice as medicine, phone being taken; (1) 'Every time I think of you, I realize how lucky I am...'; (2) 'I wanted to find a way to tell you that the small things you do...'; (3) 'There is a quiet strength in you that I admire...'; (4) 'If I could give you one thing, it would be the ability to see yourself through my eyes...'; (5) 'This isn't just a message; it's a promise...'",
+      "id": "feature-load-google-fonts-dancing-script-weight-600-cinzel-weights-400-and-700-and-great-vibes-from-fonts-googleapis-com-and-apply-them-consistently-across-all-ui-elements-as-in-the-provided-design",
+      "title": "Load Google Fonts: Dancing Script (weight 600), Cinzel (weights 400 and 700), and Great Vibes from fonts.googleapis.com, and apply them consistently across all UI elements as in the provided design.",
       "reqIds": [
         "REQ-4"
       ],
       "version": 1
     },
     {
-      "id": "feature-show-a-hidden-pulsing-for-you-priya-button-red-rose-background-rounded-pill-shape-italic-serif-font-pulse-animation-only-after-all-6-flowers-have-been-viewed-clicking-it-triggers-a-heart-burst-animation-and-reveals-a-final-thank-you-modal",
-      "title": "Show a hidden pulsing 'For You, Priya ❤️' button (red/rose background, rounded pill shape, italic serif font, pulse animation) only after all 6 flowers have been viewed. Clicking it triggers a heart burst animation and reveals a final thank-you modal.",
+      "id": "feature-set-the-page-title-to-a-message-for-the-most-special-person-and-ensure-the-app-is-fully-responsive-with-no-horizontal-overflow-using-overflow-x-hidden-on-the-body",
+      "title": "Set the page title to 'A Message for the Most Special Person ✨' and ensure the app is fully responsive with no horizontal overflow, using overflow-x: hidden on the body.",
       "reqIds": [
         "REQ-5"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-implement-a-heart-burst-particle-animation-when-triggered-spawn-100-emoji-particles-from-the-center-of-the-screen-that-fly-outward-in-random-directions-across-the-full-viewport-fading-out-over-3-seconds-then-remove-themselves-from-the-dom",
-      "title": "Implement a heart burst particle animation: when triggered, spawn 100 ❤️/💖 emoji particles from the center of the screen that fly outward in random directions across the full viewport, fading out over 3 seconds, then remove themselves from the DOM.",
-      "reqIds": [
-        "REQ-6"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-show-a-centered-modal-overlay-after-triggering-the-surprise-displaying-the-thank-you-message-thank-you-for-spending-your-valuable-time-with-me-my-cutee-i-will-be-forever-grateful-to-you-for-everything-i-hope-i-ve-been-able-to-make-you-feel-special-and-bring-a-smile-to-your-face-today-followed-by-i-admire-you-more-than-words-can-say-and-a-gold-close-button-that-dismisses-the-modal-style-with-parchment-background-gold-border-rounded-corners-and-drop-shadow",
-      "title": "Show a centered modal overlay after triggering the surprise, displaying the thank-you message: '\"Thank you for spending your valuable time with me. My cutee, I will be forever grateful to you for everything. I hope I've been able to make you feel special and bring a smile to your face today.\"' followed by '— I admire you more than words can say. —' and a gold '[ Close ]' button that dismisses the modal. Style with parchment background, gold border, rounded corners, and drop shadow.",
-      "reqIds": [
-        "REQ-7"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-apply-a-consistent-parchment-gold-ink-visual-theme-across-the-entire-app-background-color-fdfaf1-parchment-primary-text-3a3535-ink-accent-c5a059-gold-highlight-e74c3c-love-red-use-georgia-serif-font-throughout-footer-reads-eternally-yours-in-small-gold-uppercase-letter-spaced-text",
-      "title": "Apply a consistent parchment/gold/ink visual theme across the entire app: background color #fdfaf1 (parchment), primary text #3a3535 (ink), accent #c5a059 (gold), highlight #e74c3c (love/red). Use Georgia serif font throughout. Footer reads 'ETERNALLY YOURS' in small gold uppercase letter-spaced text.",
-      "reqIds": [
-        "REQ-8"
       ],
       "version": 1
     }
   ],
   "new_feature_requests": [],
   "gameProjectType": "none",
-  "projectName": "A Garden for Priya",
+  "projectName": "A Message for the Most Special Person",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

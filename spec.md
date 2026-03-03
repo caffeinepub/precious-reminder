@@ -1,16 +1,15 @@
 # Specification
 
 ## Summary
-**Goal:** Build "A Garden for Priya" — a romantic, fully client-side interactive flower garden web app with a landing screen, clickable flowers revealing personal messages, and a surprise finale.
+**Goal:** Rebuild the app as an animated parchment scroll letter with a dark entry screen and decorative scroll UI.
 
 **Planned changes:**
-- Create a full-screen landing page with a soft radial gradient (white to #f4ecd8), italic subtitle "A secret garden for Priya...", and a gold-bordered "ENTER" button that fades out and reveals the main content on click
-- Build a centered main content area (max-width 600px) with an italic serif heading "For My Everything", a gold divider, and a muted italic subtitle "Tap each bloom to reveal my heart..."
-- Implement a 3×2 grid of 6 flower emojis (🌹🌸🌷🌻🌼🌺) that start desaturated/sepia and become full color when clicked (marked as viewed), with hover scale effects
-- Add a scrollable message display area (250px tall, double gold borders) that fades in each flower's corresponding personal message when clicked, with a placeholder before any selection
-- Show a pulsing "For You, Priya ❤️" button (rose/red pill shape) only after all 6 flowers have been viewed, appearing 800ms after the last flower is clicked
-- Implement a heart burst particle animation spawning 100 ❤️/💖 emoji particles flying outward from center and fading out over 3 seconds on button click
-- Display a centered thank-you modal (parchment background, gold border, rounded corners, drop shadow) with the exact thank-you message and a gold "[ Close ]" button
-- Apply a consistent parchment/gold/ink theme (colors: #fdfaf1, #3a3535, #c5a059, #e74c3c) using Georgia serif font throughout, with a footer reading "ETERNALLY YOURS" in small gold uppercase letter-spaced text
+- Replace existing frontend with a dark (#121212) entry screen showing only an "Open My Heart ❤️" button styled in Cinzel font with a parchment/gold pill shape and hover scale/rotate effect
+- Implement animated parchment scroll UI with two wooden-style brown roll handles (with 🕯️ candle decorations) and a parchment body that animates from height 0 to 75vh over 1.8s on open
+- Render letter content inside the parchment: Great Vibes h1 title, six Dancing Script body paragraphs, a gold hr separator, a highlighted exam note section, and a "Roll Back & Close 📜" button that reverses the animation
+- Load Google Fonts: Dancing Script 600, Cinzel 400/700, and Great Vibes
+- Set page title to "A Message for the Most Special Person ✨" and ensure no horizontal overflow
+- Letter content fades in with opacity transition after 1.2s delay; close button collapses parchment and returns to entry screen
+- Mobile responsive adjustments for font sizes at max-width 480px
 
-**User-visible outcome:** Priya can open the app, enter the secret garden, tap each of the 6 flowers to reveal personal messages, and after viewing all flowers unlock a surprise heart burst animation and a heartfelt thank-you modal.
+**User-visible outcome:** Users see a dark screen with a decorative button; clicking it reveals an animated parchment scroll that unfurls to display a romantic letter with an exam note, and can be rolled back closed.

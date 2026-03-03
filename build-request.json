@@ -1,184 +1,122 @@
 {
   "kind": "build_request",
-  "title": "Rebuild 'A Garden for Priya' interactive flower garden app",
-  "projectName": "A Garden for Priya",
+  "title": "Rebuild app as animated parchment scroll letter",
+  "projectName": "My Heart Letter",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Create a full-screen entrance/landing screen with a soft radial gradient background (white to #f4ecd8), an italic subtitle 'A secret garden for Priya...' in muted grey, and a gold-bordered 'ENTER' button with uppercase letter-spacing styling. Clicking the button fades out and hides the landing screen, then fades in the main content.",
+      "text": "Rebuild the frontend to match the provided HTML design exactly: a dark (#121212) background entry screen with a parchment-styled 'Open My Heart ❤️' button (Cinzel font, gold border, rounded pill shape with hover scale/rotate effect). Clicking it hides the entry screen and reveals the scroll.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-latest"
         ],
         "quotes": [
-          "A secret garden for Priya...",
-          "Enter"
+          "<button class=\"enter-btn\" onclick=\"showScroll()\">Open My Heart ❤️</button>"
         ]
       },
       "acceptanceCriteria": [
-        "Landing screen is displayed full-screen on initial load",
-        "Clicking ENTER fades out the landing page over ~1.2s then reveals main content",
-        "Button has gold border, uppercase letter-spacing, and hover effect that darkens background"
+        "Entry screen shows only the 'Open My Heart ❤️' button centered on a #121212 background",
+        "Button uses Cinzel font, parchment (#f4e4bc) background, gold (#b89b5e) border, border-radius 50px",
+        "Hover state scales to 1.1 and rotates 2deg with white glow shadow",
+        "Clicking the button hides the entry screen and shows the scroll"
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Build the main content area (max-width 600px, centered) with: an italic serif heading 'For My Everything', a gold horizontal divider line, and a subtitle 'Tap each bloom to reveal my heart...' in small muted italic text.",
+      "text": "Implement the animated parchment scroll UI: two wooden-style brown roll handles (gradient, rounded, with 🕯️ candle decorations at each end), and a parchment body between them that animates from height 0 to 75vh over 1.8s with a cubic-bezier easing when opened. The parchment uses background color #f4e4bc with a paper-fibers texture overlay, gold left/right borders, and inner shadow.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-latest"
         ],
         "quotes": [
-          "For My Everything",
-          "Tap each bloom to reveal my heart..."
+          ".scroll-roll { background: linear-gradient(to bottom, #3d1f00, #8b4513, #3d1f00); }",
+          ".parchment-body.open { height: 75vh; }"
         ]
       },
       "acceptanceCriteria": [
-        "Header displays italic serif h1 'For My Everything'",
-        "Gold 80px wide 1px divider renders below the heading",
-        "Subtitle text renders in small italic muted style"
+        "Two wooden roll handles appear above and below the parchment, each 45px tall with candle emoji decorations",
+        "Parchment animates open from height 0 to 75vh over 1.8s",
+        "Parchment background is #f4e4bc with paper-fibers texture from transparenttextures.com",
+        "Parchment has 4px solid #b89b5e borders on left and right",
+        "Scroll is max-width 650px, centered, 95% wide"
       ]
     },
     {
       "id": "REQ-3",
-      "text": "Implement a 3×2 flower grid containing 6 flower emoji items (🌹, 🌸, 🌷, 🌻, 🌼, 🌺). Each flower starts with a desaturated/sepia filter. When clicked, it reveals its message and gets marked as 'viewed' (full color, slightly scaled down). Hovering scales up and removes desaturation.",
+      "text": "Render the letter content inside the parchment scroll. The content fades in (opacity 0 to 1) after a 1.2s delay once the scroll is open. Content includes: Great Vibes font h1 title 'To My Most Special Person 🌹' in red (#d42424); six body paragraphs in Dancing Script at 1.4rem; a gold horizontal rule separator; a highlighted exam note section with class 'highlight' in bold red (#b52b2b) at 1.5rem; and a 'Roll Back & Close 📜' button that reverses the scroll animation and returns to the entry screen.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-latest"
         ],
         "quotes": [
-          "flower-garden",
-          "flower-item",
-          "flower-item.viewed"
+          "<h1>To My Most Special Person 🌹</h1>",
+          "<p class=\"highlight\">✍️ A Note for Your Maths Exam ✍️</p>",
+          "<button class=\"close-btn\" onclick=\"closeScroll()\">Roll Back & Close 📜</button>"
         ]
       },
       "acceptanceCriteria": [
-        "6 flowers render in a 3-column grid",
-        "Flowers start with grayscale(60%) sepia(50%) filter",
-        "Clicking a flower marks it as viewed: full color + scale(0.9)",
-        "Hovering scales to 1.1 and removes desaturation"
+        "Letter content fades in with 1.2s opacity transition delayed 1.2s after open class is added",
+        "h1 uses Great Vibes font at 2.8rem in color #d42424",
+        "Body text uses Dancing Script at 1.4rem with line-height 1.7, color #2c1e16",
+        "All six paragraphs and exam note section are present with correct emoji and text",
+        "Gold horizontal rule separates love letter section from exam note section",
+        "Highlight paragraph is bold, #b52b2b, 1.5rem",
+        "'Roll Back & Close 📜' button collapses parchment over 1.8s then shows entry screen",
+        "On mobile (max-width 480px) content font-size is 1.2rem and h1 is 2.2rem"
       ]
     },
     {
       "id": "REQ-4",
-      "text": "Implement a message display area (height 250px, scrollable) with double gold top and bottom borders. When a flower is clicked, display the corresponding message with a fade-in animation. The 6 messages must match exactly: (0) the long personal message about getting lost in her, voice as medicine, phone being taken; (1) 'Every time I think of you, I realize how lucky I am...'; (2) 'I wanted to find a way to tell you that the small things you do...'; (3) 'There is a quiet strength in you that I admire...'; (4) 'If I could give you one thing, it would be the ability to see yourself through my eyes...'; (5) 'This isn't just a message; it's a promise...'",
+      "text": "Load Google Fonts: Dancing Script (weight 600), Cinzel (weights 400 and 700), and Great Vibes from fonts.googleapis.com, and apply them consistently across all UI elements as in the provided design.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-latest"
         ],
         "quotes": [
-          "display-area",
-          "messages",
-          "fade-in-text"
+          "<link href=\"https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Cinzel:wght@400;700&family=Great+Vibes&display=swap\" rel=\"stylesheet\">"
         ]
       },
       "acceptanceCriteria": [
-        "Display area is 250px tall with vertical scroll and custom gold scrollbar",
-        "Clicking each flower renders its corresponding message with fade-in animation",
-        "All 6 message texts match the source exactly including emojis",
-        "Scroll resets to top when a new message is shown",
-        "Placeholder text 'Select a flower above' shows before any flower is clicked"
+        "Dancing Script 600 is loaded and applied to body and letter content",
+        "Cinzel 400/700 is loaded and applied to buttons",
+        "Great Vibes is loaded and applied to the h1 heading"
       ]
     },
     {
       "id": "REQ-5",
-      "text": "Show a hidden pulsing 'For You, Priya ❤️' button (red/rose background, rounded pill shape, italic serif font, pulse animation) only after all 6 flowers have been viewed. Clicking it triggers a heart burst animation and reveals a final thank-you modal.",
+      "text": "Set the page title to 'A Message for the Most Special Person ✨' and ensure the app is fully responsive with no horizontal overflow, using overflow-x: hidden on the body.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-latest"
         ],
         "quotes": [
-          "surprise-btn",
-          "burstHearts",
-          "viewed.size === 6"
+          "<title>A Message for the Most Special Person ✨</title>",
+          "overflow-x: hidden;"
         ]
       },
       "acceptanceCriteria": [
-        "Surprise button is hidden until all 6 flowers are viewed",
-        "Button appears 800ms after the last flower is viewed",
-        "Button has a continuous pulse/glow animation",
-        "Clicking it triggers the heart burst and thank-you modal"
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "text": "Implement a heart burst particle animation: when triggered, spawn 100 ❤️/💖 emoji particles from the center of the screen that fly outward in random directions across the full viewport, fading out over 3 seconds, then remove themselves from the DOM.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "burstHearts",
-          "for (let i = 0; i < 100; i++)"
-        ]
-      },
-      "acceptanceCriteria": [
-        "100 heart particles are spawned on button click",
-        "Particles originate from center and spread randomly across the full viewport",
-        "Particles scale up and fade out over 3s then are removed",
-        "Alternates between ❤️ and 💖 emojis"
-      ]
-    },
-    {
-      "id": "REQ-7",
-      "text": "Show a centered modal overlay after triggering the surprise, displaying the thank-you message: '\"Thank you for spending your valuable time with me. My cutee, I will be forever grateful to you for everything. I hope I've been able to make you feel special and bring a smile to your face today.\"' followed by '— I admire you more than words can say. —' and a gold '[ Close ]' button that dismisses the modal. Style with parchment background, gold border, rounded corners, and drop shadow.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "thanks-msg",
-          "Thank you for spending your valuable time with me"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Modal appears centered on screen above the heart particles",
-        "Thank-you message text matches exactly",
-        "Close button dismisses the modal",
-        "Modal has parchment background, gold border, rounded corners, and box shadow"
-      ]
-    },
-    {
-      "id": "REQ-8",
-      "text": "Apply a consistent parchment/gold/ink visual theme across the entire app: background color #fdfaf1 (parchment), primary text #3a3535 (ink), accent #c5a059 (gold), highlight #e74c3c (love/red). Use Georgia serif font throughout. Footer reads 'ETERNALLY YOURS' in small gold uppercase letter-spaced text.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "--parchment: #fdfaf1",
-          "--ink: #3a3535",
-          "--gold: #c5a059",
-          "--love: #e74c3c",
-          "ETERNALLY YOURS"
-        ]
-      },
-      "acceptanceCriteria": [
-        "CSS variables for parchment, ink, gold, and love colors are defined and used consistently",
-        "Georgia serif font is applied globally",
-        "Footer renders 'ETERNALLY YOURS' in small gold uppercase letter-spaced text at the bottom"
+        "Browser tab title reads 'A Message for the Most Special Person ✨'",
+        "No horizontal scrollbar appears at any viewport width",
+        "Layout centers correctly on both desktop and mobile"
       ]
     }
   ],
   "constraints": [
-    "All 6 message texts must be preserved exactly as provided in the HTML source, including emojis and line breaks",
-    "The thank-you modal text must match the source exactly",
-    "No backend logic is needed — all state is client-side only"
+    "All letter content (paragraphs, exam note, emojis) must match the provided HTML exactly — do not alter the text",
+    "Do not add authentication or backend features",
+    "Font sources must be loaded from fonts.googleapis.com as specified"
   ],
   "nonGoals": [
-    "No backend data persistence or API calls",
-    "No user authentication or Internet Identity integration",
-    "No music or audio features",
-    "No additional pages beyond the landing screen and main garden"
+    "Backend data persistence",
+    "User authentication",
+    "Music or audio playback",
+    "Any features beyond the provided HTML design"
   ],
   "imageRequirements": {
     "required": [],

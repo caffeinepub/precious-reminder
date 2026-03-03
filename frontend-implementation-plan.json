@@ -1,184 +1,118 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Rebuild 'A Garden for Priya' interactive flower garden app",
+  "title": "Rebuild app as animated parchment scroll letter",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Create full-screen landing screen with radial gradient, italic subtitle, and gold-bordered ENTER button that fades to main content",
+      "summary": "Create dark entry screen with parchment-styled 'Open My Heart ❤️' button that reveals the scroll when clicked",
       "acceptanceCriteria": [
-        "Landing screen is displayed full-screen on initial load",
-        "Clicking ENTER fades out the landing page over ~1.2s then reveals main content",
-        "Button has gold border, uppercase letter-spacing, and hover effect that darkens background"
+        "Entry screen shows only the 'Open My Heart ❤️' button centered on a #121212 background",
+        "Button uses Cinzel font, parchment (#f4e4bc) background, gold (#b89b5e) border, border-radius 50px",
+        "Hover state scales to 1.1 and rotates 2deg with white glow shadow",
+        "Clicking the button hides the entry screen and shows the scroll"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/WelcomeGate.tsx",
-          "operation": "modify",
-          "description": "Replace existing welcome overlay with full-screen landing screen featuring soft radial gradient background (white to #f4ecd8), italic subtitle 'A secret garden for Priya...' in muted grey, and gold-bordered 'ENTER' button with uppercase letter-spacing. Implement fade-out animation (~1.2s) on click before triggering onEnter callback."
-        },
-        {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Update state management to control transition from WelcomeGate to main garden content. Replace LoveLetterPage rendering with new GardenPage component. Remove FloatingHearts background layer as it's not part of the garden app design."
+          "description": "Replace the envelope-based UI with a new entry screen component. The entry screen displays a centered 'Open My Heart ❤️' button on a #121212 background. Manage showScroll state (initially false). When the button is clicked, set showScroll to true to hide the entry screen and reveal the scroll component. Remove the existing Envelope component and footer."
+        },
+        {
+          "path": "frontend/src/components/EntryButton.tsx",
+          "operation": "modify",
+          "description": "Implement the entry button component. Render a button with text 'Open My Heart ❤️' using Cinzel font (font-family: 'Cinzel', serif). Apply parchment background color (#f4e4bc), gold border (4px solid #b89b5e), border-radius 50px, padding 20px 50px, font-size 1.5rem, font-weight 700, and cursor pointer. Implement hover effect: scale(1.1), rotate(2deg), and white glow box-shadow (0 0 30px rgba(255,255,255,0.8)). Add smooth transition for all transforms. Accept onClick prop to trigger parent state change."
         }
       ]
     },
     {
       "id": "REQ-2",
-      "summary": "Build main content area with italic serif heading, gold divider, and subtitle",
+      "summary": "Implement animated parchment scroll with wooden roll handles and candle decorations that animates from height 0 to 75vh",
       "acceptanceCriteria": [
-        "Header displays italic serif h1 'For My Everything'",
-        "Gold 80px wide 1px divider renders below the heading",
-        "Subtitle text renders in small italic muted style"
+        "Two wooden roll handles appear above and below the parchment, each 45px tall with candle emoji decorations",
+        "Parchment animates open from height 0 to 75vh over 1.8s",
+        "Parchment background is #f4e4bc with paper-fibers texture from transparenttextures.com",
+        "Parchment has 4px solid #b89b5e borders on left and right",
+        "Scroll is max-width 650px, centered, 95% wide"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/GardenPage.tsx",
-          "operation": "create",
-          "description": "Create main garden page component with max-width 600px centered container. Include italic serif heading 'For My Everything', gold horizontal divider line (80px wide, 1px), and subtitle 'Tap each bloom to reveal my heart...' in small muted italic text. This component will house the flower grid, message display, surprise button, and footer."
+          "path": "frontend/src/components/Envelope.tsx",
+          "operation": "modify",
+          "description": "Replace the envelope UI with a scroll component. Render a scroll-container (max-width 650px, width 95%, margin 0 auto). Inside, render: (1) Top wooden roll handle (45px height, background linear-gradient(to bottom, #3d1f00, #8b4513, #3d1f00), border-radius 25px, width 100%, with 🕯️ emoji decorations positioned at left and right ends using flexbox); (2) Parchment body (background #f4e4bc with paper-fibers texture overlay from https://www.transparenttextures.com/patterns/paper-fibers.png, borders left and right 4px solid #b89b5e, box-shadow inset 0 0 30px rgba(0,0,0,0.15), overflow-y auto, padding 40px 30px); (3) Bottom wooden roll handle (same as top). When isOpen prop is true, add 'open' class to parchment-body which animates height from 0 to 75vh over 1.8s using cubic-bezier(0.68, -0.55, 0.27, 1.55). Accept isOpen prop and render children inside the parchment body."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Add CSS animations and styles for the scroll component. Define @keyframes for scroll opening animation. Add styles for .scroll-container, .scroll-roll (wooden handles), .parchment-body (default height 0, overflow hidden), and .parchment-body.open (height 75vh, transition 1.8s cubic-bezier). Include paper-fibers texture background-image, gold borders, inner shadow, and responsive adjustments for mobile (max-width 480px). Ensure all existing Tailwind directives and theme variables remain intact."
         }
       ]
     },
     {
       "id": "REQ-3",
-      "summary": "Implement 3×2 flower grid with 6 emoji flowers, desaturated initially, revealing color on click and hover interactions",
+      "summary": "Render letter content inside parchment with fade-in animation, including title, six paragraphs, exam note, and close button",
       "acceptanceCriteria": [
-        "6 flowers render in a 3-column grid",
-        "Flowers start with grayscale(60%) sepia(50%) filter",
-        "Clicking a flower marks it as viewed: full color + scale(0.9)",
-        "Hovering scales to 1.1 and removes desaturation"
+        "Letter content fades in with 1.2s opacity transition delayed 1.2s after open class is added",
+        "h1 uses Great Vibes font at 2.8rem in color #d42424",
+        "Body text uses Dancing Script at 1.4rem with line-height 1.7, color #2c1e16",
+        "All six paragraphs and exam note section are present with correct emoji and text",
+        "Gold horizontal rule separates love letter section from exam note section",
+        "Highlight paragraph is bold, #b52b2b, 1.5rem",
+        "'Roll Back & Close 📜' button collapses parchment over 1.8s then shows entry screen",
+        "On mobile (max-width 480px) content font-size is 1.2rem and h1 is 2.2rem"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/FlowerGrid.tsx",
-          "operation": "create",
-          "description": "Create flower grid component displaying 6 flower emojis (🌹, 🌸, 🌷, 🌻, 🌼, 🌺) in a 3-column responsive grid. Implement state tracking for viewed flowers. Apply grayscale(60%) sepia(50%) filter to unviewed flowers. On click, mark flower as viewed (full color, scale(0.9)) and emit flower index to parent. On hover, scale to 1.1 and remove desaturation. Use CSS transitions for smooth animations."
-        },
-        {
-          "path": "frontend/src/components/GardenPage.tsx",
+          "path": "frontend/src/components/LetterContent.tsx",
           "operation": "modify",
-          "description": "Integrate FlowerGrid component and manage viewed flower state at page level. Pass click handler to display corresponding message and track which flowers have been viewed for surprise button unlock logic."
+          "description": "Replace the existing letter content with the exact content from the provided HTML. Render: (1) h1 'To My Most Special Person 🌹' using Great Vibes font, 2.8rem, color #d42424, text-align center, margin-bottom 30px; (2) Six body paragraphs in Dancing Script font, 1.4rem, line-height 1.7, color #2c1e16, text-align justify, margin-bottom 20px each (exact text from provided HTML with all emojis); (3) Gold horizontal rule (border: none, height 2px, background #b89b5e, margin 30px 0); (4) Exam note paragraph with class 'highlight' in bold, color #b52b2b, 1.5rem, text-align center ('✍️ A Note for Your Maths Exam ✍️' followed by exam encouragement text); (5) 'Roll Back & Close 📜' button styled like the entry button (Cinzel font, parchment bg, gold border, pill shape) that calls onClose prop. Wrap all content in a div with class 'letter-content' that fades in (opacity 0 to 1) with 1.2s transition and 1.2s delay when parent has 'open' class. Add media query for mobile: content 1.2rem, h1 2.2rem."
         }
       ]
     },
     {
       "id": "REQ-4",
-      "summary": "Implement scrollable message display area with double gold borders showing flower-specific messages with fade-in animation",
+      "summary": "Load Google Fonts (Dancing Script, Cinzel, Great Vibes) and apply them consistently across all UI elements",
       "acceptanceCriteria": [
-        "Display area is 250px tall with vertical scroll and custom gold scrollbar",
-        "Clicking each flower renders its corresponding message with fade-in animation",
-        "All 6 message texts match the source exactly including emojis",
-        "Scroll resets to top when a new message is shown",
-        "Placeholder text 'Select a flower above' shows before any flower is clicked"
+        "Dancing Script 600 is loaded and applied to body and letter content",
+        "Cinzel 400/700 is loaded and applied to buttons",
+        "Great Vibes is loaded and applied to the h1 heading"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/MessageDisplay.tsx",
-          "operation": "create",
-          "description": "Create message display component with 250px height, vertical scroll, and custom gold scrollbar styling. Define all 6 messages exactly as specified: (0) long personal message about getting lost in her; (1) 'Every time I think of you, I realize how lucky I am...'; (2) 'I wanted to find a way to tell you that the small things you do...'; (3) 'There is a quiet strength in you that I admire...'; (4) 'If I could give you one thing, it would be the ability to see yourself through my eyes...'; (5) 'This isn't just a message; it's a promise...'. Implement fade-in animation when message changes, scroll reset on message change, and placeholder text 'Select a flower above' when no flower is selected. Style with double gold borders (top and bottom)."
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Replace the existing Google Fonts link with the exact fonts required: Dancing Script (weight 600), Cinzel (weights 400 and 700), and Great Vibes. Use the following URL in the <head> section: https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Cinzel:wght@400;700&family=Great+Vibes&display=swap. Ensure the link is placed before other stylesheets."
         },
         {
-          "path": "frontend/src/components/GardenPage.tsx",
+          "path": "frontend/tailwind.config.js",
           "operation": "modify",
-          "description": "Add MessageDisplay component below FlowerGrid. Pass selected flower index as prop to trigger message display updates."
+          "description": "Update the fontFamily theme extension to include the three new Google Fonts. Add 'dancing': ['Dancing Script', 'cursive'], 'cinzel': ['Cinzel', 'serif'], and 'vibes': ['Great Vibes', 'cursive'] to the fontFamily object. Keep all existing font family definitions intact."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Set the default body font-family to 'Dancing Script', cursive, weight 600. Ensure all button elements use 'Cinzel', serif. Add utility classes or CSS rules to apply Great Vibes to h1 elements within letter content. Verify font loading and fallback fonts are specified."
         }
       ]
     },
     {
       "id": "REQ-5",
-      "summary": "Show hidden pulsing 'For You, Priya ❤️' button after all 6 flowers viewed, triggering heart burst and modal on click",
+      "summary": "Set page title to 'A Message for the Most Special Person ✨' and prevent horizontal overflow",
       "acceptanceCriteria": [
-        "Surprise button is hidden until all 6 flowers are viewed",
-        "Button appears 800ms after the last flower is viewed",
-        "Button has a continuous pulse/glow animation",
-        "Clicking it triggers the heart burst and thank-you modal"
+        "Browser tab title reads 'A Message for the Most Special Person ✨'",
+        "No horizontal scrollbar appears at any viewport width",
+        "Layout centers correctly on both desktop and mobile"
       ],
       "file_operations": [
-        {
-          "path": "frontend/src/components/SurpriseButton.tsx",
-          "operation": "create",
-          "description": "Create surprise button component with red/rose background, rounded pill shape, italic serif font 'For You, Priya ❤️', and continuous pulse/glow animation. Accept visibility prop and onClick handler. Component should fade in smoothly when becoming visible."
-        },
-        {
-          "path": "frontend/src/components/GardenPage.tsx",
-          "operation": "modify",
-          "description": "Add logic to show SurpriseButton only after all 6 flowers are viewed, with 800ms delay after the last flower is clicked. Wire button click to trigger heart burst animation and show thank-you modal."
-        }
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "summary": "Implement heart burst particle animation spawning 100 emoji hearts from center that fly outward and fade over 3 seconds",
-      "acceptanceCriteria": [
-        "100 heart particles are spawned on button click",
-        "Particles originate from center and spread randomly across the full viewport",
-        "Particles scale up and fade out over 3s then are removed",
-        "Alternates between ❤️ and 💖 emojis"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/HeartBurst.tsx",
-          "operation": "create",
-          "description": "Create heart burst animation component that spawns 100 heart particles (alternating ❤️ and 💖 emojis) from viewport center. Each particle flies outward in a random direction with random velocity, scales up, and fades out over 3 seconds. Use fixed positioning to cover full viewport. Automatically remove particles from DOM after animation completes. Component should be conditionally rendered and self-cleanup."
-        },
-        {
-          "path": "frontend/src/components/GardenPage.tsx",
-          "operation": "modify",
-          "description": "Add state to trigger HeartBurst component when surprise button is clicked. Ensure heart burst renders above all other content and triggers thank-you modal after starting."
-        }
-      ]
-    },
-    {
-      "id": "REQ-7",
-      "summary": "Show centered thank-you modal with specific message text and gold Close button after surprise trigger",
-      "acceptanceCriteria": [
-        "Modal appears centered on screen above the heart particles",
-        "Thank-you message text matches exactly",
-        "Close button dismisses the modal",
-        "Modal has parchment background, gold border, rounded corners, and box shadow"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/ThankYouModal.tsx",
-          "operation": "create",
-          "description": "Create centered modal overlay displaying exact thank-you message: '\"Thank you for spending your valuable time with me. My cutee, I will be forever grateful to you for everything. I hope I've been able to make you feel special and bring a smile to your face today.\"' followed by '— I admire you more than words can say. —'. Include gold '[ Close ]' button that dismisses modal. Style with parchment background (#fdfaf1), gold border (#c5a059), rounded corners, and drop shadow. Use fixed positioning with semi-transparent backdrop."
-        },
-        {
-          "path": "frontend/src/components/GardenPage.tsx",
-          "operation": "modify",
-          "description": "Add state to control ThankYouModal visibility, showing it after heart burst is triggered. Wire modal close button to hide modal."
-        }
-      ]
-    },
-    {
-      "id": "REQ-8",
-      "summary": "Apply consistent parchment/gold/ink visual theme with Georgia serif font and 'ETERNALLY YOURS' footer",
-      "acceptanceCriteria": [
-        "CSS variables for parchment, ink, gold, and love colors are defined and used consistently",
-        "Georgia serif font is applied globally",
-        "Footer renders 'ETERNALLY YOURS' in small gold uppercase letter-spaced text at the bottom"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "Replace existing CSS variables with garden theme: --parchment: #fdfaf1, --ink: #3a3535, --gold: #c5a059, --love: #e74c3c. Set body background to var(--parchment) and text color to var(--ink). Apply Georgia serif font family globally. Remove existing romantic theme variables and animations not needed for garden app."
-        },
-        {
-          "path": "frontend/tailwind.config.js",
-          "operation": "modify",
-          "description": "Update Tailwind config to extend theme with garden color palette (parchment, ink, gold, love). Update font families to prioritize Georgia serif. Remove Dancing Script and Playfair Display if no longer needed. Keep or add animations for pulse, fade, and scale transitions used in garden interactions."
-        },
-        {
-          "path": "frontend/src/components/GardenPage.tsx",
-          "operation": "modify",
-          "description": "Add footer element at bottom of page with text 'ETERNALLY YOURS' styled in small gold uppercase letter-spaced text. Ensure footer is visible after scrolling through all content."
-        },
         {
           "path": "frontend/index.html",
           "operation": "modify",
-          "description": "Update page title from 'A Message for Priya' to 'A Garden for Priya'. Verify Georgia font is available (it's a web-safe font) or add Google Fonts link if custom serif is preferred. Remove font imports for Dancing Script, Playfair Display if no longer used."
+          "description": "Change the <title> tag content from 'For My Cutee 🌹' to 'A Message for the Most Special Person ✨'. Ensure the title is the only change to the HTML structure."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Add overflow-x: hidden to the body and html elements to prevent any horizontal scrolling. Ensure all container elements (scroll-container, parchment-body) use max-width and responsive width percentages. Verify centering with margin: 0 auto on containers. Add box-sizing: border-box globally if not already present."
         }
       ]
     }

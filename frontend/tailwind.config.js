@@ -62,8 +62,12 @@ export default {
                 }
             },
             fontFamily: {
-                serif: ['Georgia', 'serif'],
-                sans: ['Georgia', 'serif'],
+                serif: ["'Cinzel'", 'Georgia', 'serif'],
+                sans: ["'Dancing Script'", 'cursive'],
+                script: ["'Dancing Script'", 'cursive'],
+                dancing: ["'Dancing Script'", 'cursive'],
+                cinzel: ["'Cinzel'", 'serif'],
+                vibes: ["'Great Vibes'", 'cursive'],
             },
             borderRadius: {
                 lg: 'var(--radius)',

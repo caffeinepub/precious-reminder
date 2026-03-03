@@ -4,127 +4,318 @@
 
 @layer base {
     :root {
-        --parchment: #fdfaf1;
-        --ink: #3a3535;
-        --gold: #c5a059;
-        --love: #e74c3c;
+        --parchment-color: #f4e4bc;
+        --seal-color: #d42424;
+        --text-color: #2c1e16;
+        --accent-color: #b89b5e;
+
+        --parchment: #fdfaf0;
+        --ink: #2c2c2c;
+        --gold: #d4af37;
+        --love: #bc1818;
 
         --radius: 0.5rem;
 
-        --background: oklch(0.98 0.02 85);
-        --foreground: oklch(0.22 0.02 30);
-        --card: oklch(1 0 0);
-        --card-foreground: oklch(0.22 0.02 30);
-        --popover: oklch(1 0 0);
-        --popover-foreground: oklch(0.22 0.02 30);
-        --primary: oklch(0.68 0.09 70);
-        --primary-foreground: oklch(1 0 0);
-        --secondary: oklch(0.94 0.02 80);
-        --secondary-foreground: oklch(0.22 0.02 30);
-        --muted: oklch(0.94 0.02 80);
-        --muted-foreground: oklch(0.55 0.04 50);
-        --accent: oklch(0.55 0.14 25);
-        --accent-foreground: oklch(1 0 0);
+        --background: oklch(0.10 0.04 20);
+        --foreground: oklch(0.92 0.03 75);
+        --card: oklch(0.15 0.04 20);
+        --card-foreground: oklch(0.92 0.03 75);
+        --popover: oklch(0.15 0.04 20);
+        --popover-foreground: oklch(0.92 0.03 75);
+        --primary: oklch(0.40 0.14 25);
+        --primary-foreground: oklch(0.98 0.01 80);
+        --secondary: oklch(0.20 0.05 25);
+        --secondary-foreground: oklch(0.92 0.03 75);
+        --muted: oklch(0.20 0.05 25);
+        --muted-foreground: oklch(0.62 0.04 60);
+        --accent: oklch(0.65 0.12 75);
+        --accent-foreground: oklch(0.10 0.04 20);
         --destructive: oklch(0.52 0.20 25);
         --destructive-foreground: oklch(0.99 0.01 20);
-        --border: oklch(0.88 0.04 75);
-        --input: oklch(0.88 0.04 75);
-        --ring: oklch(0.68 0.09 70);
-        --chart-1: oklch(0.68 0.09 70);
-        --chart-2: oklch(0.55 0.14 25);
-        --chart-3: oklch(0.75 0.07 90);
+        --border: oklch(0.28 0.06 25);
+        --input: oklch(0.28 0.06 25);
+        --ring: oklch(0.65 0.12 75);
+        --chart-1: oklch(0.65 0.12 75);
+        --chart-2: oklch(0.40 0.14 25);
+        --chart-3: oklch(0.55 0.10 50);
         --chart-4: oklch(0.60 0.10 55);
         --chart-5: oklch(0.70 0.08 80);
     }
 
     .dark {
-        --background: oklch(0.15 0.02 30);
+        --background: oklch(0.10 0.04 20);
         --foreground: oklch(0.92 0.03 75);
-        --card: oklch(0.18 0.02 30);
+        --card: oklch(0.15 0.04 20);
         --card-foreground: oklch(0.92 0.03 75);
-        --popover: oklch(0.18 0.02 30);
+        --popover: oklch(0.15 0.04 20);
         --popover-foreground: oklch(0.92 0.03 75);
-        --primary: oklch(0.68 0.09 70);
-        --primary-foreground: oklch(0.15 0.02 30);
-        --secondary: oklch(0.22 0.02 30);
+        --primary: oklch(0.40 0.14 25);
+        --primary-foreground: oklch(0.98 0.01 80);
+        --secondary: oklch(0.20 0.05 25);
         --secondary-foreground: oklch(0.92 0.03 75);
-        --muted: oklch(0.22 0.02 30);
+        --muted: oklch(0.20 0.05 25);
         --muted-foreground: oklch(0.62 0.04 60);
-        --accent: oklch(0.55 0.14 25);
-        --accent-foreground: oklch(0.92 0.03 75);
+        --accent: oklch(0.65 0.12 75);
+        --accent-foreground: oklch(0.10 0.04 20);
         --destructive: oklch(0.52 0.20 25);
         --destructive-foreground: oklch(0.99 0.01 20);
-        --border: oklch(0.28 0.03 40);
-        --input: oklch(0.28 0.03 40);
-        --ring: oklch(0.68 0.09 70);
+        --border: oklch(0.28 0.06 25);
+        --input: oklch(0.28 0.06 25);
+        --ring: oklch(0.65 0.12 75);
     }
 
     * {
         box-sizing: border-box;
     }
 
-    html, body, #root {
-        width: 100%;
-        min-height: 100%;
-        margin: 0;
-        padding: 0;
+    html {
+        overflow-x: hidden;
     }
 
     body {
-        background-color: var(--parchment);
-        font-family: 'Georgia', serif;
-        color: var(--ink);
+        margin: 0;
+        padding: 0;
+        background: #121212;
+        font-family: 'Dancing Script', cursive;
+        font-weight: 600;
+        color: var(--text-color);
         overflow-x: hidden;
+        min-height: 100vh;
+    }
+
+    #root {
+        width: 100%;
+        min-height: 100vh;
     }
 }
 
-/* ── Custom scrollbar for message display ── */
-.garden-scroll::-webkit-scrollbar {
-    width: 5px;
+/* ── App Root ── */
+.app-root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #121212;
+    overflow-x: hidden;
+    padding: 20px 0;
 }
-.garden-scroll::-webkit-scrollbar-track {
+
+/* ── Entry Screen ── */
+#entry-screen {
+    text-align: center;
+    z-index: 10;
+}
+
+/* ── Enter Button ── */
+.enter-btn {
+    background: #f4e4bc;
+    color: #2c1e16;
+    padding: 18px 45px;
+    font-size: 1.4rem;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    border: 3px solid #b89b5e;
+    cursor: pointer;
+    box-shadow: 0 0 30px rgba(184, 155, 94, 0.4);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                background 0.4s ease,
+                box-shadow 0.4s ease;
+    border-radius: 50px;
+    outline: none;
+}
+
+.enter-btn:hover {
+    transform: scale(1.1) rotate(2deg);
+    background: #ffffff;
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.6);
+}
+
+/* ── Scroll Wrapper ── */
+.scroll-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95%;
+    max-width: 650px;
+    padding: 20px 0;
+}
+
+/* ── Scroll Container ── */
+.scroll-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* ── Wooden Roll Handles ── */
+.scroll-roll {
+    width: 105%;
+    height: 45px;
+    background: linear-gradient(to bottom, #3d1f00, #8b4513, #3d1f00);
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    z-index: 5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    flex-shrink: 0;
+}
+
+.scroll-roll::before,
+.scroll-roll::after {
+    content: '🕯️';
+    font-size: 1.2rem;
+    filter: drop-shadow(0 0 5px orange);
+}
+
+/* ── Parchment Body ── */
+.parchment-body {
+    width: 100%;
+    height: 0;
+    background-color: #f4e4bc;
+    background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+    overflow: hidden;
+    transition: height 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.15), 0 10px 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+    border-left: 4px solid #b89b5e;
+    border-right: 4px solid #b89b5e;
+}
+
+.parchment-body.open {
+    height: 75vh;
+    overflow-y: auto;
+    padding: 50px 30px;
+}
+
+/* Custom scrollbar for parchment */
+.parchment-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.parchment-body::-webkit-scrollbar-track {
     background: transparent;
 }
-.garden-scroll::-webkit-scrollbar-thumb {
-    background: var(--gold);
+
+.parchment-body::-webkit-scrollbar-thumb {
+    background: #b89b5e;
     border-radius: 10px;
 }
 
-/* ── Fade-in text animation ── */
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
+/* ── Letter Content Wrapper (fade-in) ── */
+.letter-content-wrapper {
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out 1.2s;
 }
 
-.fade-in-text {
-    animation: fadeInUp 0.8s forwards;
+.letter-content-wrapper.visible {
+    opacity: 1;
 }
 
-/* ── Heart burst particle animation ── */
-@keyframes heartFly {
-    0%   { transform: translate(-50%, -50%) scale(0); opacity: 1; }
-    100% { transform: translate(var(--hx), var(--hy)) scale(1.8); opacity: 0; }
+/* ── Letter Content ── */
+.letter-content {
+    color: #2c1e16;
+    font-size: 1.4rem;
+    line-height: 1.7;
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    font-weight: 600;
 }
 
-.heart-particle {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    pointer-events: none;
-    z-index: 999;
-    animation: heartFly 3s ease-out forwards;
+.letter-content h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.8rem;
+    margin-bottom: 25px;
+    color: #d42424;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.letter-content p {
+    margin-bottom: 20px;
+}
+
+.letter-content strong {
+    font-weight: bold;
+}
+
+/* ── Gold Divider ── */
+.gold-divider {
+    border: 0;
+    border-top: 1px solid #b89b5e;
+    margin: 30px 0;
+}
+
+/* ── Highlight paragraph ── */
+.highlight {
+    color: #b52b2b;
+    font-weight: bold;
     font-size: 1.5rem;
 }
 
-/* ── Pulse animation for surprise button ── */
-@keyframes surprisePulse {
-    0%   { transform: scale(1); box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.4); }
-    70%  { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(231, 76, 60, 0); }
-    100% { transform: scale(1); }
+/* ── Close Button ── */
+.close-btn {
+    margin: 30px 0;
+    background: transparent;
+    color: #d42424;
+    border: 2px solid #d42424;
+    padding: 10px 25px;
+    font-family: 'Cinzel', serif;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease, color 0.3s ease;
+    font-size: 1rem;
 }
 
-.surprise-pulse {
-    animation: surprisePulse 2s infinite;
+.close-btn:hover {
+    background: #d42424;
+    color: #ffffff;
+}
+
+/* ── Footer Attribution ── */
+.footer-attribution {
+    position: fixed;
+    bottom: 12px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 11px;
+    color: rgba(184, 155, 94, 0.5);
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.5px;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.footer-attribution span {
+    pointer-events: auto;
+}
+
+.footer-link {
+    color: rgba(184, 155, 94, 0.7);
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    color: rgba(184, 155, 94, 1);
+}
+
+/* ── Mobile Adjustments ── */
+@media (max-width: 480px) {
+    .letter-content {
+        font-size: 1.2rem;
+    }
+
+    .letter-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .enter-btn {
+        font-size: 1.2rem;
+        padding: 15px 35px;
+    }
 }
 
 /* ── Shadcn accordion animations ── */

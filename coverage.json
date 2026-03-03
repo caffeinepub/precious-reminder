@@ -1,119 +1,78 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-28T02:58:04.009Z",
+  "generatedAt": "2026-03-01T23:38:28.635Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 8,
-    "implemented": 8,
+    "total": 5,
+    "implemented": 5,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Create a full-screen entrance/landing screen with a soft radial gradient background (white to #f4ecd8), an italic subtitle 'A secret garden for Priya...' in muted grey, and a gold-bordered 'ENTER' button with uppercase letter-spacing styling. Clicking the button fades out and hides the landing screen, then fades in the main content.",
+        "summary": "Rebuild the frontend to match the provided HTML design exactly: a dark (#121212) background entry screen with a parchment-styled 'Open My Heart ❤️' button (Cinzel font, gold border, rounded pill shape with hover scale/rotate effect). Clicking it hides the entry screen and reveals the scroll.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/WelcomeGate.tsx",
-          "frontend/src/App.tsx"
+          "frontend/src/App.tsx",
+          "frontend/src/components/EntryButton.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/components/WelcomeGate.tsx",
-          "frontend/src/App.tsx"
+          "frontend/src/App.tsx",
+          "frontend/src/components/EntryButton.tsx"
         ]
       },
       {
         "id": "REQ-2",
-        "summary": "Build the main content area (max-width 600px, centered) with: an italic serif heading 'For My Everything', a gold horizontal divider line, and a subtitle 'Tap each bloom to reveal my heart...' in small muted italic text.",
+        "summary": "Implement the animated parchment scroll UI: two wooden-style brown roll handles (gradient, rounded, with 🕯️ candle decorations at each end), and a parchment body between them that animates from height 0 to 75vh over 1.8s with a cubic-bezier easing when opened. The parchment uses background color #f4e4bc with a paper-fibers texture overlay, gold left/right borders, and inner shadow.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/GardenPage.tsx"
+          "frontend/src/components/Envelope.tsx",
+          "frontend/src/index.css"
         ],
         "matchedFiles": [
-          "frontend/src/components/GardenPage.tsx"
+          "frontend/src/components/Envelope.tsx",
+          "frontend/src/index.css"
         ]
       },
       {
         "id": "REQ-3",
-        "summary": "Implement a 3×2 flower grid containing 6 flower emoji items (🌹, 🌸, 🌷, 🌻, 🌼, 🌺). Each flower starts with a desaturated/sepia filter. When clicked, it reveals its message and gets marked as 'viewed' (full color, slightly scaled down). Hovering scales up and removes desaturation.",
+        "summary": "Render the letter content inside the parchment scroll. The content fades in (opacity 0 to 1) after a 1.2s delay once the scroll is open. Content includes: Great Vibes font h1 title 'To My Most Special Person 🌹' in red (#d42424); six body paragraphs in Dancing Script at 1.4rem; a gold horizontal rule separator; a highlighted exam note section with class 'highlight' in bold red (#b52b2b) at 1.5rem; and a 'Roll Back & Close 📜' button that reverses the scroll animation and returns to the entry screen.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/FlowerGrid.tsx",
-          "frontend/src/components/GardenPage.tsx"
+          "frontend/src/components/LetterContent.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/components/FlowerGrid.tsx",
-          "frontend/src/components/GardenPage.tsx"
+          "frontend/src/components/LetterContent.tsx"
         ]
       },
       {
         "id": "REQ-4",
-        "summary": "Implement a message display area (height 250px, scrollable) with double gold top and bottom borders. When a flower is clicked, display the corresponding message with a fade-in animation. The 6 messages must match exactly: (0) the long personal message about getting lost in her, voice as medicine, phone being taken; (1) 'Every time I think of you, I realize how lucky I am...'; (2) 'I wanted to find a way to tell you that the small things you do...'; (3) 'There is a quiet strength in you that I admire...'; (4) 'If I could give you one thing, it would be the ability to see yourself through my eyes...'; (5) 'This isn't just a message; it's a promise...'",
+        "summary": "Load Google Fonts: Dancing Script (weight 600), Cinzel (weights 400 and 700), and Great Vibes from fonts.googleapis.com, and apply them consistently across all UI elements as in the provided design.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/MessageDisplay.tsx",
-          "frontend/src/components/GardenPage.tsx"
+          "frontend/index.html",
+          "frontend/tailwind.config.js",
+          "frontend/src/index.css"
         ],
         "matchedFiles": [
-          "frontend/src/components/MessageDisplay.tsx",
-          "frontend/src/components/GardenPage.tsx"
+          "frontend/index.html",
+          "frontend/tailwind.config.js",
+          "frontend/src/index.css"
         ]
       },
       {
         "id": "REQ-5",
-        "summary": "Show a hidden pulsing 'For You, Priya ❤️' button (red/rose background, rounded pill shape, italic serif font, pulse animation) only after all 6 flowers have been viewed. Clicking it triggers a heart burst animation and reveals a final thank-you modal.",
+        "summary": "Set the page title to 'A Message for the Most Special Person ✨' and ensure the app is fully responsive with no horizontal overflow, using overflow-x: hidden on the body.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/SurpriseButton.tsx",
-          "frontend/src/components/GardenPage.tsx"
+          "frontend/index.html",
+          "frontend/src/index.css"
         ],
         "matchedFiles": [
-          "frontend/src/components/SurpriseButton.tsx",
-          "frontend/src/components/GardenPage.tsx"
-        ]
-      },
-      {
-        "id": "REQ-6",
-        "summary": "Implement a heart burst particle animation: when triggered, spawn 100 ❤️/💖 emoji particles from the center of the screen that fly outward in random directions across the full viewport, fading out over 3 seconds, then remove themselves from the DOM.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/HeartBurst.tsx",
-          "frontend/src/components/GardenPage.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/HeartBurst.tsx",
-          "frontend/src/components/GardenPage.tsx"
-        ]
-      },
-      {
-        "id": "REQ-7",
-        "summary": "Show a centered modal overlay after triggering the surprise, displaying the thank-you message: '\"Thank you for spending your valuable time with me. My cutee, I will be forever grateful to you for everything. I hope I've been able to make you feel special and bring a smile to your face today.\"' followed by '— I admire you more than words can say. —' and a gold '[ Close ]' button that dismisses the modal. Style with parchment background, gold border, rounded corners, and drop shadow.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/ThankYouModal.tsx",
-          "frontend/src/components/GardenPage.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/ThankYouModal.tsx",
-          "frontend/src/components/GardenPage.tsx"
-        ]
-      },
-      {
-        "id": "REQ-8",
-        "summary": "Apply a consistent parchment/gold/ink visual theme across the entire app: background color #fdfaf1 (parchment), primary text #3a3535 (ink), accent #c5a059 (gold), highlight #e74c3c (love/red). Use Georgia serif font throughout. Footer reads 'ETERNALLY YOURS' in small gold uppercase letter-spaced text.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/index.css",
-          "frontend/tailwind.config.js",
-          "frontend/src/components/GardenPage.tsx",
-          "frontend/index.html"
-        ],
-        "matchedFiles": [
-          "frontend/src/index.css",
-          "frontend/tailwind.config.js",
-          "frontend/src/components/GardenPage.tsx",
-          "frontend/index.html"
+          "frontend/index.html",
+          "frontend/src/index.css"
         ]
       }
     ]
@@ -125,15 +84,10 @@
     "frontend-implementation-plan.json",
     "frontend/index.html",
     "frontend/src/App.tsx",
-    "frontend/src/components/FloatingHearts.tsx",
-    "frontend/src/components/FlowerGrid.tsx",
-    "frontend/src/components/GardenPage.tsx",
-    "frontend/src/components/HeartBurst.tsx",
-    "frontend/src/components/LoveLetterPage.tsx",
-    "frontend/src/components/MessageDisplay.tsx",
-    "frontend/src/components/SurpriseButton.tsx",
-    "frontend/src/components/ThankYouModal.tsx",
-    "frontend/src/components/WelcomeGate.tsx",
+    "frontend/src/components/EntryButton.tsx",
+    "frontend/src/components/Envelope.tsx",
+    "frontend/src/components/LetterContent.tsx",
+    "frontend/src/components/ScrollLetter.tsx",
     "frontend/src/index.css",
     "frontend/tailwind.config.js",
     "project_state.json",

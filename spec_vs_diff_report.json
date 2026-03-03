@@ -1,41 +1,43 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-28T02:58:04.005Z",
-  "summary": "The diff implements almost all requirements quite thoroughly. All 8 REQs have corresponding implementations. Minor gaps exist: the HeartBurst component has a bug in its loop that likely causes only the first particle to be spawned (early return in loop), and the footer text says 'Eternally Yours' (mixed case) rather than 'ETERNALLY YOURS' (all caps, though CSS text-transform uppercase is present). Overall coverage is strong with a few minor concerns.",
+  "generatedAt": "2026-03-01T23:38:28.632Z",
+  "summary": "The diff implements most requirements from the build request. The core structure is present: entry screen, parchment scroll with wooden handles, letter content, Google Fonts loading, and page title. However, there are some gaps — notably the candle emoji decorations on scroll handles are not confirmed in the visible CSS/HTML, the paper-fibers texture URL from transparenttextures.com is not confirmed in the truncated CSS, and the highlight paragraph styling details need verification. The footer attribution was not requested. Overall implementation is largely complete with a few unverified details due to CSS truncation.",
   "missing_requirements": [
     {
-      "id": "REQ-6",
-      "requirement": "Spawn 100 heart particles from center flying outward",
-      "reason": "The HeartBurst.tsx useEffect loop has 'return () => clearTimeout(timeout)' inside the for-loop body, which causes the loop to exit after the first iteration. Only 1 particle would actually be spawned instead of 100.",
+      "requirement": "Wooden roll handles must have 🕯️ candle emoji decorations at each end",
+      "reason": "The ScrollLetter.tsx renders .scroll-roll divs but no candle emoji content is visible in the component markup or CSS pseudo-elements. The CSS is truncated before the scroll-roll styles are fully shown, so no ::before/::after candle content is confirmed.",
       "evidence": [
-        "frontend/src/components/HeartBurst.tsx"
+        "frontend/src/components/ScrollLetter.tsx",
+        "frontend/src/index.css"
+      ]
+    },
+    {
+      "requirement": "Parchment background must use paper-fibers texture from transparenttextures.com as an overlay",
+      "reason": "The index.css is truncated and the parchment-body background-image rule referencing transparenttextures.com cannot be confirmed from the available diff content.",
+      "evidence": [
+        "frontend/src/index.css"
       ]
     }
   ],
   "hallucinated_features": [
     {
-      "description": "A Caffeine.ai attribution footer link is rendered in the GardenPage footer",
-      "reason": "The build request only asks for a footer reading 'ETERNALLY YOURS' in gold uppercase. The diff adds an additional 'Built with heart using Caffeine link' line that was not requested.",
+      "description": "Footer attribution added linking to caffeine.ai",
+      "reason": "The build request does not mention any footer attribution. App.tsx includes a footer-attribution div with a caffeine.ai link, which was not requested.",
       "evidence": [
-        "frontend/src/components/GardenPage.tsx"
+        "frontend/src/App.tsx"
       ]
     }
   ],
-  "confidence": 0.82,
+  "confidence": 0.72,
   "changed_files": [
     "frontend-file-summaries.txt",
     "frontend/index.html",
     "frontend/src/App.tsx",
-    "frontend/src/components/FloatingHearts.tsx",
-    "frontend/src/components/FlowerGrid.tsx",
-    "frontend/src/components/GardenPage.tsx",
-    "frontend/src/components/HeartBurst.tsx",
-    "frontend/src/components/LoveLetterPage.tsx",
-    "frontend/src/components/MessageDisplay.tsx",
-    "frontend/src/components/SurpriseButton.tsx",
-    "frontend/src/components/ThankYouModal.tsx",
-    "frontend/src/components/WelcomeGate.tsx",
+    "frontend/src/components/EntryButton.tsx",
+    "frontend/src/components/Envelope.tsx",
+    "frontend/src/components/LetterContent.tsx",
+    "frontend/src/components/ScrollLetter.tsx",
     "frontend/src/index.css",
     "frontend/tailwind.config.js",
     "project_state.json"
