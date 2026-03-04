@@ -1,0 +1,321 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ── Apology Letter Design Tokens ── */
+    --paper: #fdfaf3;
+    --ink: #2c2c2c;
+    --accent-color: #b53d5f;
+    --border-light: #e0d8c3;
+
+    --radius: 0.25rem;
+
+    /* ── Shadcn semantic tokens (OKLCH raw L C H) ── */
+    --background: 0.08 0.03 15;
+    --foreground: 0.95 0.0 0;
+    --card: 0.12 0.02 15;
+    --card-foreground: 0.95 0.0 0;
+    --popover: 0.12 0.02 15;
+    --popover-foreground: 0.95 0.0 0;
+    --primary: 0.45 0.16 10;
+    --primary-foreground: 0.98 0.01 0;
+    --secondary: 0.3 0.06 20;
+    --secondary-foreground: 0.9 0.01 0;
+    --muted: 0.2 0.02 15;
+    --muted-foreground: 0.65 0.03 15;
+    --accent: 0.45 0.16 10;
+    --accent-foreground: 0.98 0.01 0;
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.99 0.01 20;
+    --border: 0.3 0.04 15;
+    --input: 0.3 0.04 15;
+    --ring: 0.45 0.16 10;
+    --chart-1: 0.45 0.16 10;
+    --chart-2: 0.55 0.1 30;
+    --chart-3: 0.45 0.08 20;
+    --chart-4: 0.6 0.1 40;
+    --chart-5: 0.65 0.08 50;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    background: radial-gradient(circle, #3d0a1a 0%, #0a0a0a 100%);
+    font-family: "EB Garamond", Georgia, serif;
+    color: var(--ink);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  #root {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* ── Overlay (Entry Screen) ── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  transition: opacity 1.2s ease;
+}
+
+.overlay.fading {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.open-btn {
+  padding: 18px 50px;
+  font-family: "Dancing Script", cursive;
+  font-size: 2rem;
+  background: transparent;
+  color: #fff;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: all 0.4s ease;
+  border-radius: 50px;
+  line-height: 1.2;
+}
+
+.open-btn:hover {
+  background: white;
+  color: #b53d5f;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+}
+
+.open-hint {
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 16px;
+  font-style: italic;
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* ── Letter Container ── */
+.letter-container {
+  width: 85%;
+  max-width: 550px;
+  background: var(--paper);
+  padding: 45px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  border-radius: 3px;
+  position: relative;
+  transform: rotate(-0.5deg);
+  max-height: 85vh;
+  overflow-y: auto;
+  border: 1px solid var(--border-light);
+  animation: letterReveal 0.6s ease forwards;
+}
+
+@keyframes letterReveal {
+  from {
+    opacity: 0;
+    transform: rotate(-0.5deg) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-0.5deg) scale(1);
+  }
+}
+
+/* Custom scrollbar */
+.letter-container::-webkit-scrollbar {
+  width: 5px;
+}
+.letter-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+.letter-container::-webkit-scrollbar-thumb {
+  background: rgba(181, 61, 95, 0.3);
+  border-radius: 10px;
+}
+
+/* ── Letter Header ── */
+.letter-header {
+  font-family: "Dancing Script", cursive;
+  font-size: 2.4rem;
+  color: var(--accent-color);
+  margin-bottom: 25px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(181, 61, 95, 0.2);
+  line-height: 1.2;
+}
+
+/* ── Letter Content ── */
+.letter-content {
+  line-height: 1.8;
+  font-size: 1.1rem;
+  text-align: justify;
+  white-space: pre-line;
+  color: #333;
+  font-family: "EB Garamond", Georgia, serif;
+}
+
+/* ── Small Message Display ── */
+.small-msg {
+  font-size: 1rem;
+  color: var(--accent-color);
+  font-style: italic;
+  margin-top: 15px;
+  text-align: center;
+  min-height: 24px;
+  font-weight: bold;
+  font-family: "EB Garamond", Georgia, serif;
+  transition: opacity 0.3s ease;
+}
+
+/* ── Buttons Area ── */
+.buttons-area {
+  margin-top: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+  position: relative;
+}
+
+.choice-btn {
+  padding: 12px 35px;
+  border: none;
+  cursor: pointer;
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 1.2rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.yes-btn {
+  background: #b53d5f;
+  color: white;
+  z-index: 10;
+  position: relative;
+}
+
+.yes-btn:hover {
+  background: #9e3452;
+  box-shadow: 0 6px 16px rgba(181, 61, 95, 0.4);
+  transform: scale(1.02);
+}
+
+.no-btn {
+  background: #666;
+  color: white;
+  position: absolute;
+  transition: none;
+}
+
+/* ── Success View ── */
+.success-view {
+  text-align: center;
+  font-family: "Dancing Script", cursive;
+  animation: fadeInSuccess 1s ease forwards;
+}
+
+.success-view h2 {
+  font-size: 3rem;
+  color: var(--accent-color);
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.success-view p {
+  font-size: 1.5rem;
+  color: #444;
+  font-family: "EB Garamond", Georgia, serif;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+@keyframes fadeInSuccess {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ── Footer Attribution ── */
+.footer-attribution {
+  position: fixed;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 10px;
+  color: rgba(253, 250, 243, 0.25);
+  font-family: "EB Garamond", Georgia, serif;
+  letter-spacing: 0.5px;
+  pointer-events: none;
+  z-index: 200;
+}
+
+.footer-attribution span {
+  pointer-events: auto;
+}
+
+.footer-link {
+  color: rgba(253, 250, 243, 0.4);
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  color: rgba(253, 250, 243, 0.7);
+}
+
+/* ── Shadcn accordion animations ── */
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+.animate-accordion-down {
+  animation: accordion-down 0.2s ease-out;
+}
+
+.animate-accordion-up {
+  animation: accordion-up 0.2s ease-out;
+}
